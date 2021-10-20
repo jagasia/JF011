@@ -187,6 +187,47 @@ Task:
 		search text box and button
 
 
+	Google material icons
+
+
+
+Cards
+------
+	where will we use cards?
+		ex:
+			shopping 
+				we see products displaying in a grid format
+
+				each element in the grid is a card
+
+				
+Activity:
+---------
+	Identify bootstrap cards and create a website with cards arranged as grid
+
+	https://www.w3schools.com/bootstrap4/bootstrap_cards.asp
+
+
+
+
+
+Lets create a form in html
+
+classes used:
+	text boxes:		.form-control
+	buttons:		.btn	.btn-success		.btn-warning
+	form:			.container			.container-fluid
+
+	when there is an error in validation, we can use:	.has-error	(bootstrap 3 feature. NOT AVAILABLE IN Bootstrap 4)
+	in Bootstrap 4,
+		<input type="text" name="" id="" class="form-control is-invalid">
+
+
+	in angular, it is possible to apply the classes conditionally. 
+
+	
+
+Develop form with textbox, password, drop down, date using gijgo, radio button and checkbox form-row, form-group, form-control, form-check, form-check-input, form-check-label, form-check-input
 
 
 
