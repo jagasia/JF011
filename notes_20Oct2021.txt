@@ -1,0 +1,155 @@
+My name is 
+	Jagadeeswaran Rangappan
+(Trainer)
+	t-Jagdeeswaran
+
+	9488029292
+
+
+
+Stage 2 is completed
+---------------------
+
+We start from Stage 3 now:
+---------------------------
+Bootstrap
+
+JPA, Hibernate, Spring Data Access JPA with Spring Boot
+
+Logging, and Continuous Code Quality
+
+Data Structures and Algorithms
+
+Design Principles and Patterns
+
+
+----------------------------------------------------------
+Bootstrap:
+----------
+	Why we need Bootstrap?
+		to make page responsive	
+		UI framework for building websites	(scaffolding)
+
+Visual studio code	(we have used it during HTML, CSS, Javascript)
+
+
+
+	What is bootstrap?
+		CSS, Javascript/ Jquery 
+			lot of css jquery code is being already done for us to use/ reuse
+		CDN
+
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+the above 3 lines copied from w3schools bootstrap in "try yourself"
+
+we can also get this from bootstrap cdn
+
+.btn {
+  display: inline-block;
+  margin-bottom: 0;
+  font-weight: normal;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
+  cursor: pointer;
+  background-image: none;
+  border: 1px solid transparent;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  border-radius: 4px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+
+
+	
+
+
+
+
+
+https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css
+https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js
+https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js
+
+
+
+
+we can also create local css, js files and copy the content from CDN, paste here and keep local copy of these files
+
+----------------------------------------------------------
+Bootstrap column layout
+-------------------------
+	a page is seen as 12 columns
+	we can merge or split these columns
+		ex:
+			i need 2 columns
+				create each of 6 columns 		6+6=12
+			i need 3 columns
+				create each of 4 columns			4+4+4=12
+
+
+create a row
+	that contains required columns
+
+
+
+btn-success
+btn-danger
+btn-info
+
+alert-success
+alert-danger
+alert-info
+
+these are contextual colors
+	success	=	green
+	danger	=	red
+	info	=	blue
+
+
+
+
+
+
+UserName:
+__________
+Password:
+__________
+
+
+in chrome browser, we can change the device size to some device models
+
+
+emulate devices in chrome browser
+	right click chrome browser, inspect
+		second icon (toggle device toolbar)
+
+
+
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	This meta data informs how to adapt to the browser width
+
+
+TasK
+----
+	Create a HTML file and add bootstrap CDN
+	create 4 columns layout and check in browser
+
+	in each column, type something and give contextual background (warning, danger, success, info)
+
+	check the web page in browser
+
+
+
+
