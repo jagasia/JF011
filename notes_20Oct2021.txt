@@ -151,5 +151,48 @@ TasK
 	check the web page in browser
 
 
+Nav Bar:
+--------
+	Menu bar
+
+	Home	About Us	Contact Us			Sign In/ Sign Up
+
+
+	Navigation bar
+	is very useful for users to navigate between various pages.
+	
+
+	<div class="navbar bg-dark navbar-dark">
+		<a class="navbar-brand" href="#">Logo</a>
+
+	</div>
+
+
+Element selection
+1) using Inspect
+2) selection tool in Developer Console
+3) Hovering over the elements in the HTML code within the "Element" section of Developer Tool
+Applying Styles directly using Developer Tools
+1) Add new style in the style window
+2) Disable an existing style using the checkbox
+3) Change value of an existing style
+
+Task:
+	Nav bar
+
+	Learn to use nav bar in your html file.
+	Identify various bootstrap classes that can be used to make nav bar with
+		images
+		dropdowns
+		search text box and button
+
+
+
+
+
+
+
+
+
 
 
