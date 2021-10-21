@@ -22,3 +22,253 @@ TasK
 
 	now, find the source code that gives the effect and modify the code and observe the change
 	now, add additional code to get some effects which are not already found in the cdn
+
+-------------------------------------------
+-------------------------------------------
+Hibernate
+	ORM Basics
+	Hibernate Basics
+	ORM implementation with Hibernate XML Configuration and Annotation Configuration
+	Mapping, Persisting objects into database, Detatched Objects
+	HQL
+	Criteria
+
+
+Any idea, what is hibernate?
+	java framework
+		for mapping java classes to database tables
+
+	class - table
+	Object - Relational mapping
+	ORM
+		Object Relational Mapping
+
+	Lets recollect JDBC
+		what we did?
+			in jdbc, we retrieve records from the database table.
+		each record is stored as an object
+		if we get lot of records, then we had
+		array list of objects
+
+	
+	List<Employee> empList=new ArrayList();
+	while(rs.next())
+	{
+		Employee employee=new Employee(rs.getInt(1),rs.getString(2), rs.getString(3));
+		empList.add(employee);
+	}
+	return empList;
+
+
+	from the above code, what we understand?
+		every record of EMPLOYEE table is stored as an object of type Employee
+
+	So, we are actually mapping or treating every row in a table as an object of a class.
+
+
+Now, imagine, every project, has this common requirement.
+	if i tell you the name of the table and the columns in the table,
+	you are going to write a very similar routine code
+
+	Table name: STUDENT
+
+	Class:	Student
+	class:	StudentDao	and StudentDaoImpl
+
+	in StudentDaoImpl
+		create(Student)	adds a new row into the table
+		read()		retrieves all rows from the table	and returns an arraylist of student objects
+		read(id)	finds one row using primary key		and returns an object or null (if not found)
+		update()	updates a row
+		delete()	deletes a row
+	
+
+
+
+
+
+public void create(Student student)
+{}
+
+public List<Student> read()
+{}
+
+public Student read(int id)
+{}
+
+public void update(Student student)
+{}
+
+public void delete(int id)
+{}
+
+This looks like a pattern DAO pattern
+	that is common in most of the programs
+	So, a framework has evolved to do this very usual task easily
+
+
+
+If you want hibernate f/w to do this routine task, then you need to give necessary inputs to the framework.
+
+That is what ORM
+
+History of hibernate:
+---------------------
+First framework for ORM was EJB
+Enterprise JavaBeans
+	this was not only for ORM
+	this also served ORM	from EJB 3.0
+
+JPA framework was introduced
+	Java Persistence API
+
+JPA is a concept used by 
+	EJB
+	JPA
+	Hibernate
+	
+
+Hibernate
+	when it was introduced, it was pure hibernate, without spring framework
+	now a days, hibernate is also a part of spring and spring boot
+
+
+if you are not creating a spring project, still a pure hibernate can be used
+	core java program also
+
+
+
+How to use hibernate in a java project?
+1) hibernate jar files 			
+		these jar files can be added to our project class path
+		or if we are using maven project, then we can add dependencies in pom.xml
+2) hibernate.cfg.xml file	
+		this configuration file contains information required to connect to the databse
+			driver class name
+			url
+			username
+			password
+			
+			dialect		hibernate should write the SQL code for us. But there are lot of SQL languages available, so how to choose?	(Oracle sql / MS SQL/ mysql)		dialect is a slang of language
+			ddlauto		create/update			create will re create if table is found
+					update will create if not found. will not create if found
+3) entity.hbm.xml file
+		this configuration (hibernate mapping) file is created for every entity class in the project
+
+		what is entity class?	
+			a class that is mapped to a table is entity class
+
+		in E-R diagram
+			E is entity
+			and every entity may become a table in db. and class in java program
+
+
+hibernate can create the table automatically, for every entity class present in our project
+
+
+Lets take an example
+
+can you suggest a table name???
+
+STUDENT
+	id
+	firstName
+	lastName
+	
+Demo:
+1) Lets create a maven project (java project)
+2) in pom.xml
+	add the following dependencies for hibernate
+			<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>1.7.30</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.jboss.logging/jboss-logging -->
+		<dependency>
+			<groupId>org.jboss.logging</groupId>
+			<artifactId>jboss-logging</artifactId>
+			<version>3.4.1.Final</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-log4j12 -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>1.7.30</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>5.2.17.Final</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>5.1.47</version>
+		</dependency>
+
+
+3) Lets create an entity class
+	Student
+		id
+		firstName
+		lastName
+
+4) lets create
+	hibernate.cfg.xml
+	student.hbm.xml
+
+
+5) StudentDaoImpl implements StudentDao
+
+
+in the previous example, we have created a simple java maven project (NOT spring/ spring boot)
+we used hibernate framework and created CRUD operations
+using 
+	hibernate.cfg.xml
+	student.hbm.xml
+
+NOW,
+	instead of using entity.hbm.xml file, 
+		we are going to use Annotations
+
+
+Employee is the entity this time
+
+what are the annotations we use?
+	@Entity				this annotation marks the class is an entity class. 
+	@Table				optional. If we do not use this, then class name becomes the table name
+					use this annotation to specify the table name (which can be different)
+
+	@Id				marks a field as primary key
+	@GeneratedValue			used to specify the auto generation mode for primary key
+	@Column				used to specify column name corresponding the field name (can be different)
+	@Blob				to mark it as large object
+	@NotNull
+	@JsonIgnore
+	
+
+In the previous task, you created entity class, hibernate mapping file (xml).
+In this task, you will not use hbm xml file but use annotations.
+
+
+1) annotations
+	what are the annotations available? and what are their uses?
+2) configuration
+	what are the properties used in the hibernate.cfg.xml file?
+3) hibernate mapping
+	whate are the properties
+
+
+
+
+
+https://www.tutorialspoint.com/hibernate/hibernate_configuration.htm
+
