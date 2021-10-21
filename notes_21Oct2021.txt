@@ -1,0 +1,24 @@
+The source code of Bootstrap is available.
+We can modify them.
+We can have any number of CSS files present in our project.
+we can refer any number of CSS files from a HTML page.
+
+<link rel= 	href="one.css" >
+<link rel= 	href="two.css" >
+<link rel= 	href="three.css" >
+
+bootstrap.min.css
+	we can modify this file according to our requirement.
+
+
+
+TasK
+----
+	Create a html file and use bootstrap cdn
+	apply some styles to the form elements and other elements
+
+	now, create your own css (bootstrap.css) file and copy the source code from CDN
+	refer to your own css file (than cdn)
+
+	now, find the source code that gives the effect and modify the code and observe the change
+	now, add additional code to get some effects which are not already found in the cdn
