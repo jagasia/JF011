@@ -1,0 +1,114 @@
+Hibernate
+---------
+Yesterday we learned to use hibernate framework in a maven java project (which is not spring project or spring boot)
+
+Today, lets learn to create a spring project and use hibernate
+	Hibernate Template
+
+In Spring framework, there is a concept called "Auto wiring"
+	We define @Component	or @Bean
+
+	either we define components / beans in xml file or using annotations.
+
+1) Hibernate in java project		(you have sample project i have uploaded in git)
+2) Hibernate Template in spring project
+3) Hibernate Template in spring boot project
+4) JPA repository in spring boot project	(this is what we use in our projects)
+
+
+2) Hibernate Template in spring project
+------------------------------------------
+
+i) create a maven project
+	and add the dependencies
+		      <dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-orm</artifactId>
+			<version>5.2.7.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>5.2.5.Final</version>
+		</dependency>
+
+
+the complete set of dependencies:-
+----------------
+     <dependency>
+    <groupId>org.springframework</groupId>
+    <artifactId>spring-context</artifactId>
+    <version>5.2.7.RELEASE</version>
+</dependency>
+<dependency>
+    <groupId>org.springframework</groupId>
+    <artifactId>spring-context-support</artifactId>
+    <version>5.2.7.RELEASE</version>
+</dependency>
+<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+<dependency>
+    <groupId>mysql</groupId>
+    <artifactId>mysql-connector-java</artifactId>
+    <version>5.1.47</version>
+</dependency>
+      <dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-orm</artifactId>
+			<version>5.2.7.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>5.2.5.Final</version>
+		</dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+      <scope>test</scope>
+    </dependency>
+
+ii) we need to define the beans in xml file or using annotations (@Component or @Bean)
+	what are the beans, we need to define??????
+		1) An implementation of DataSource interface
+			ex: 	DriverManagerDataSource		
+		
+			this is where we inject the dependencies like driverClassName, url, username, password
+
+		2) An implementation of SessionFactory interface
+			ex:	LocalSessionFactoryBean
+
+			this is where we inject the dependencies like 
+				dataSource	(we inject the DriverManagerDataSource we defined in previous step)
+				hibernateProperties
+					dialect, show_sql, format_sql	etc
+
+		3) Hibernate template bean
+			this is where we inject the dependency
+				sessionFactory (we inject the LocalSessionFactoryBean we defined in previous step)
+
+
+		4) TransactionManager bean
+			this is required to do DML operations
+
+		5) Dao bean
+			auto wire the dependency "HibernateTemplate"
+
+	If we do hibernate template using XML configuration, the above beans must be specified in the xml file
+	If we do hibernate template using annotations, then we dont need the above xml configuration, but we do using 		annotations
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
