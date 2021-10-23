@@ -1,0 +1,144 @@
+ORM (Object-Relational Mapping), 
+	makes it easier to develop code that interacts with database, 
+	abstracts the database system, transactionality
+
+Evolution of ORM solutions, 
+	Hibernate XML Configuration, 
+	Hibernate Annotation Configuration, 
+	Spring Data JPA, (spring boot)
+	Hibernate benefits, 
+		open source, 
+		light weight, 
+		database independent query (query ie., SQL statements are generated automatically based on the dialect. If we choose, MySQLDialect, then the queries are generated in mysql language).
+
+Session Factory, 
+Session, Transaction Factory, 
+Transaction, 
+Connection Provider
+
+"XML Configuration - 
+	persistence class, (hibernate.cfg.xml)
+	mapping xml, (entity.hbm.xml)
+	configuration xml, 
+	loading hibernate configuration xml file
+		Configuration cfg=new Configuration();
+		cfg.configure("hibernate.cfg.xml");
+
+Annotation Configuration 
+- persistence class, 	(hibernate.cfg.xml)
+	@Entity, 
+	@Table, 
+	@Id, 
+	@Column, 	optional. If we do not use, then column name will be same as the class property name
+	hibernate configuration xml file
+
+Loading hibernate configuration and interacting with database (org.hibernate)
+
+	get the session factory, 
+		SessionFactory sf=cfg.buildSessionFactory();
+	open session, begin transaction, commit transaction, close session"
+		Session session=sf.openSession();
+		Transaction tran=session.beginTransaction();
+		//do DML operations
+		tran.commit();		//or
+		tran.rollback();
+		session.close();
+
+JPA (Java Persistence API), 
+	JPA is a specification (JSR 338), 
+	JPA does not have implementation, 
+	Hibernate is one of the implementation for JPA, 
+	Hibernate is a ORM tool, 
+	Spring Data JPA is an abstraction above Hibernate to remove boiler plate code when persisting data using Hibernate.
+
+Hibernate log configuration and ddl-auto configuration, 
+JpaRepsitory.findById(), 
+
+defining Query Methods, 
+	JpaRespository.save(), 
+	JpaRepository.deleteById()
+Query Methods - 
+	Search by containing text, 
+	sorting, 
+	filter with starting text, 
+	fetch between dates, 
+	greater than or  lesser than, top
+
+
+@Query("SELECT c FROM Customer c WHERE c.address=:address")
+	public List<Customer> findCustomersByAddress(@Param("address") String address);
+
+if the condition is based on primary key, then the method should return an entity (Customer)
+if the condition is based on non-primary key, then the method should return List<Entity (List<Customer>)
+
+now, the complicated thing is when the query selects few columns rather than the entire object
+	SELECT c.name, c.address from Customer c
+
+here, the method return type should be composite. So we need to create a type that contains 2 values inside.
+
+especially, when the query uses group by, we get aggregation like SUM, MIN, MAX, COUNT, AVG etc
+
+	we can also return Object 		or List<Object>
+
+
+
+identify what are the techniques used to solve the above problems 
+
+
+ddl-auto
+	Hibernate ie., Spring data jpa
+		will create tables and columns automatically
+		but by default it is following standard implementation convention for naming the
+			tables
+			columns
+
+	If the class name is JavaStudent
+	then the table name is JAVA_STUDENT	(Surprised????? because, in RDBMS, everything is capital. NOT Case 		sensitive. so the differentiation of next word is done by _)
+	thIS is abouT spring data jpa. 		Not hibernate fw
+
+Yesterday,  we did not experience this, because, the table name was single word. But column name? again, id, name, address are all single words
+
+Now, lets see an example, with mutliple words in spring data jpa
+
+in same project, lets create one more entity.
+
+If i tell you an entity, you will do everything 
+	i) entity class
+	ii) repository interface		(that extends Jpa Repository interface)
+	iii) service class			(that autowires the repo interface)
+	iv) controller class			(that autowires the service class)
+
+Yesterday we created Customer entity.
+Today, can you suggest an entity?
+	MyProduct
+		productId
+		productName
+		price
+Look at the table being created:-
+Table: my_product
+Columns:
+product_id int(11) PK 
+price float 
+product_name varchar(255)
+
+
+If i dont want jpa fw to name like this. JUST i want exactly same as in class.
+
+in application.properties:
+	spring.jpa.hibernate.naming.physical-strategy=org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+
+
+now, the table structure would be:-
+
+Table: myproduct
+Columns:
+productId int(11) PK 
+price float 
+productName varchar(255)
+
+
+
+
+
+
+
