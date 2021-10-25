@@ -112,3 +112,68 @@ void insertUser(@Param("name") String name, @Param("age") Integer age,
 int updateUserSetStatusForNameNative(Integer status, String name);
 
 
+Task:
+-----
+Create query to return list of entities in descending order
+Create native query to do the same
+Use Sorted 
+Use @Modifying
+Use positional parameters
+Use named parameters
+
+
+
+admin_view_menus.jsp
+admin_edit_menu.jsp
+
+customer_view_menu.jsp
+customer_cart.jsp
+
+
+-------------------------------------
+************************************************************************************
+Maven installation steps:
+-------------------------
+First check if maven is already installed in your computer or not:
+	mvn -v
+
+
+Usually, when we install a software, 
+	some files are stored in the program files. Folders may be created. Desktop shortcuts are created.
+	In addition to that, some times, 
+		environment variables are also created.
+
+
+But in case of Maven, we do not get an installer, while we download Maven.
+What we download, is a zip file (window OS)
+
+https://dlcdn.apache.org/maven/maven-3/3.8.3/source/apache-maven-3.8.3-src.zip
+
+Once you downloaded the zip file.
+Extract the zip file contents into a Folder
+	C:\Program Files\Apache Software Foundation
+		if you do not find "Apache Software Foundation" folder in c:\program files, CREATE IT
+
+
+
+Create the following environment variables:
+	M2_HOME		C:\Program Files\Apache Software Foundation\apache-maven-3.6.3
+	M2		%M2_HOME%\bin
+	MAVEN_OPTS	-Xms256m -Xmx512m
+
+close the command prompt and open a new command prompt
+and check
+	mvn -v
+
+
+if you check JAVA_HOME
+	
+
+
+
+
+
+
+
+
+
