@@ -1,0 +1,114 @@
+Query Methods - Search by containing text, sorting, filter with starting text, fetch between dates, greater than or  lesser than, top
+
+https://www.baeldung.com/spring-data-jpa-query
+
+
+
+jpa repository allows us to write queries using @Query
+
+basically, the queries we write are not SQL statements.
+	in sql:	SELECT * FROM Employee		(notice, * for all columns, 	Employee is the table name)
+	but
+	in jpa:	SELECT e FROM Employee e	(noteice, e if an object(s) of Employee. Employee is not the table name, but the class name. You know, the table name and the class name can be different also)
+
+
+now, if we want to use SQL language features, like functions,
+	we can write NATIVE query
+
+	
+public interface CustomerRepository extends JpaRepository<Customer, Integer>
+{
+	@Query("SELECT c FROM Customer c WHERE c.address=:address")
+	public List<Customer> findCustomersByAddress(@Param("address") String address);
+	
+	@Query(value =  "SELECT * FROM Customer", nativeQuery = true)
+	public List<Customer> getAllCustomers();
+	
+}
+
+
+
+
+	@Query(value =  "SELECT * FROM Customer ORDER BY id DESC", nativeQuery = true)
+	public List<Customer> getAllCustomers();
+
+
+Pagination
+-----------
+In JSP, i display the records in pages
+	i can display page numbers in the bottom with hyperlink
+	each page can have fixed number of columns. Last page can have only available rows
+
+query.setMaxRowCount();
+query.list();
+
+
+
+JPQL		JPA Query Language
+HQL		Hibernate Query Language
+
+before these fw, even EJB had
+EJBQL		EJB Query Language
+
+All these are java implementation querying.
+Because a java programmer is more into java classes and properties than TABLES and COLUMNS
+
+because, if there is an image column, then we can simply add a getter method that returns Encoded string from image
+in queries, if we say image, then it is getImage()
+
+
+@Query("SELECT u FROM User u WHERE u.status = ?1")
+User findUserByStatus(Integer status);
+
+
+here, ?1 means, the first parameter
+
+?1, ?2, ?3 
+these are called as positional parameters
+
+@Query("SELECT u FROM User u WHERE u.status = :status")
+User findUserByStatus(@Param("status") Integer status);
+
+here,
+:status is a named parameter
+
+@Query("SELECT u FROM User u WHERE u.status = :status and u.name = :name")
+User findUserByStatusAndNameNamedParams(
+  @Param("status") Integer status, 
+  @Param("name") String name);
+
+
+
+------------
+some times we write a query like
+SELECT * FROM CUSTOMER a WHERE a.address IN (:address)
+
+in this case, :address should be a collection of Strings
+
+
+@Query(value = "SELECT u FROM User u WHERE u.name IN :names")
+List<User> findUserByNameList(@Param("names") Collection<String> names);
+
+
+DML operations like INSERT, UPDATE, DELETE
+
+all these operations can be done using query with @Modifying annotation
+
+
+
+@Modifying
+@Query(
+  value = 
+    "insert into Users (name, age, email, status) values (:name, :age, :email, :status)",
+  nativeQuery = true)
+void insertUser(@Param("name") String name, @Param("age") Integer age, 
+  @Param("status") Integer status, @Param("email") String email);
+
+
+
+@Modifying
+@Query(value = "update Users u set u.status = ? where u.name = ?", 
+  nativeQuery = true)
+int updateUserSetStatusForNameNative(Integer status, String name);
+
+
