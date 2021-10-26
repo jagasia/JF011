@@ -15,11 +15,16 @@ Can you tell me the example for 1 to Many?
 
 EMPLOYEE
 	ID
-	FIRSTNAME
-	LASTNAME
+	NAME
 	DEPARTMENT		object		not department id	
 			department_id will be the foreign key
 			but in java, Employee  has Department object 
+
+department
+	id
+	name
+	@OneToMany		
+	List<Employee>
 
 we do not use standard implementation of physical naming
 
@@ -29,7 +34,7 @@ but in employee table, department_id is the foreign key
 _ is good
 
 Any annotation ends with Many, will create a new table. BEcause, we cannot store many values in one row.
-
+---------------------------------------------------------------------------------------------------------
 1 ECE
 	11
 	12
@@ -46,6 +51,25 @@ when a dropdownlist is selected, it will never call the server side script. it c
 like javascript/ jquery
 
 from that jquery/js we can call server side script. THIS is called as AJAX
+
+
+Many To Many
+	what can be an example for M-M
+
+Customer
+Product
+
+Many Customers buys Many Products
+
+that relationship is M-M means, it becomes an entity
+ 
+Whenever a relationship is Many - Many, the relationship becomes an entity (table)
+
+Hibernate will create a new table for this relationship
+
+@ManyToMany			see, this ends with "Many" so it will create a table
+
+
 
 
 
