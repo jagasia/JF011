@@ -1,0 +1,51 @@
+Hibernate relationships:
+
+@ManyToOne, @JoinColumn, @OneToMany, FetchType.EAGER, FetchType.LAZY, @ManyToMany, @JoinTable, mappedBy
+
+
+The relationship between entities can be
+	1 to Many
+	Many to 1
+	1 to 1
+	Many to Many
+
+Can you tell me the example for 1 to Many?
+
+1 Department Has many Employees
+
+EMPLOYEE
+	ID
+	FIRSTNAME
+	LASTNAME
+	DEPARTMENT		object		not department id	
+			department_id will be the foreign key
+			but in java, Employee  has Department object 
+
+we do not use standard implementation of physical naming
+
+id is the primary key in department table
+but in employee table, department_id is the foreign key
+
+_ is good
+
+Any annotation ends with Many, will create a new table. BEcause, we cannot store many values in one row.
+
+1 ECE
+	11
+	12
+	13
+
+how can a department row, provision space for 3 employees????	
+	so it will create a new table.
+	But already there is a table Employee. So we need to mention that DO NOT CREATE A NEW TABLE, rather, use the existing table.
+		mappedBy 		is used to specify that
+
+
+
+when a dropdownlist is selected, it will never call the server side script. it can call only the client side script.
+like javascript/ jquery
+
+from that jquery/js we can call server side script. THIS is called as AJAX
+
+
+
