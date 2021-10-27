@@ -1,0 +1,93 @@
+Logging
+	SLF4J
+		INFO, DEBUG, ERROR, WARN		
+			these are the log entries we do in many program areas for observation
+			System.out.println	should be avoided and log should be encouraged.
+			Why?
+				System.out.println will display the information temporarily. 
+				also, when users access our application, (using browser) they are not going to see 				SYSO outputs.
+				we can log the information in SYSO also, files also
+				file loggers can be used to permanently store the log information.
+	
+			scenario:
+				a client/ consumer complaints that the transaction fails. 
+				As a developer, you will first check the log entries.
+				there, you may find, error, line number, file name etc. 
+				ex:	NumberFormatException
+	
+					you understand that the user entered invalid number. But it is unhandled.
+					you can understand the problem, root cause and then do the needful.
+
+				Not only exceptions, but we do observation / debugging to see if the code enters, 					true block or false block, etc using loggers.
+
+	In spring boot, the starter dependency 
+				starter
+				starter-web
+
+	these dependencies include log4j
+
+	The log entries displayed in the STDOUT may contain hh:mm:ss
+	But the permanent logging ie., FILE logger must contain dd-MM-yyyy hh:mm:ss
+	in spring boot, it is always dd-MM-yyyy hh:mm:ss
+
+	we can change that format
+ 	
+	logging.file.name=jag.log
+		this application property specifies the log file name
+
+	Rolling log policy
+		means, the log file will be limited to a size. 
+		Once that size if reached, another log file will be created.
+
+logging.pattern.file= %d{yyyy-MMM-dd HH:mm:ss.SSS} %-5level [%thread] %logger{15} - %msg%n
+logging.pattern.console= %d{yyyy-MMM-dd HH:mm:ss.SSS} %-5level [%thread] %logger{15} - %msg%n  
+
+logging.file.name=jag.log
+logging.logback.rollingpolicy.file-name-pattern=MyApp-%d{yyyy-MM-dd}.%i.log
+
+
+The log format for file can be different from the log format for the console.
+
+
+
+				
+
+
+Lombok
+------
+	Lombok simplies the coding. 
+	it eliminates the need for boilerplate code.
+
+	In most of the projects, we do
+	i) add a constructor (no arg / all arg)
+	ii) getters and setters
+
+	These boilerplate coding can be avoided by using Lombok annotations
+
+	Lombok does not work in jdk 8
+	we need java 11 or later for using lombok.
+
+
+Sonar
+-----
+	used for analysing the code quality
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
