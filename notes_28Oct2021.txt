@@ -1,0 +1,48 @@
+Logging
+	Log4j was used for logging 
+		WARN
+		INFO
+		DEBUG
+		ERROR
+
+	Slf4j
+		part of spring boot starter dependencies
+			starter
+			starter-web
+
+		spring boot auto configuration already configured the logging. 
+		we can modify the behavior of logging using our own configuration (application.properties)
+
+		different appenders
+			console		SYSTEM OUT
+			FILE
+
+		for different appenders, we can choose different pattern
+			yyyy-MM-dd HH:mm:ss:SS
+
+	we can have rolling file naming policy
+		when the file reaches a size, next file should be created.
+
+-------------------------------------------------------------------------------
+Lombok
+------
+	lombok is used in java to generate boilerplate code like constructors, getters and setters
+
+after adding the below lombok dependency:
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<optional>true</optional>
+		</dependency>
+
+I have used the following annotations:
+
+@Data					//generates getter setter code
+@NoArgsConstructor		//generates no arg constructor code
+@AllArgsConstructor		//generates all args constructor code
+
+
+
+
+
+
