@@ -1,0 +1,64 @@
+1) download lombok
+	https://projectlombok.org/download
+
+2) The lombok.jar can be copied into the root Eclipse or Spring Tool Suite folder and run like this:
+	java -jar lombok-1.16.12.jar
+
+	this will open a GUI where the eclipse or sts location should be chosen and install
+
+(or)
+	add lombok jar can be added to the classpath of the project
+
+
+
+
+
+3) add dependency to pom.xml
+	<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+4) use @Data annotation to generate getters and setters
+
+5) use @Slf4j annotation for logging
+
+package com.example.demo.controller;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.example.demo.entity.Employee;
+
+import lombok.extern.slf4j.Slf4j;
+
+@RestController
+@Slf4j
+public class MyController {
+
+	@GetMapping("/")
+	public String hello()
+	{
+		
+		log.info("This is lombok log");
+		Employee e=new Employee();
+		e.setFirstName("Jag");
+		return "Hello world "+e.getFirstName();
+	}
+}
+
+
+
+Appenders:
+-----------
+log4j.category.myAppednerLogger=INFO, myAppedner
+log4j.additivity.myAppednerLogger=false
+
+
+
+@Log4j(topic = "myAppednerLogger")
+@Service("myService")
+public class DemoServiceImpl implements DemoService {
+  ...
+}
