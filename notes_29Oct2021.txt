@@ -1,0 +1,140 @@
+Logging
+Lombok
+Sonar
+---------------------------------
+
+Sonar
+	is used for analyzing the code quality
+	clean when you code
+	This is more into white/glass box testing
+	whether or not the good practices followed in the code?
+		is there any variable 
+			declared and unused
+			declared and not initialized
+		is there any comment
+			comments are good. they are used for explanation or self description
+			but there are some code, we will comment them out.	They are not good practice.
+		a method has multiple return statements
+			if(true)
+				return 100;
+			else
+				return 0;
+
+		the if statement does not have {}		bad practice.
+	
+		If the class does not belong to any package. 	(it is in default package)
+
+		we assign null to an object.
+		Then we access the member of the object. (At runtime, we get NullPointerException) Sonar will find it
+	What are the code quality metrics
+		Bug			errors in the code
+		Code smell		code that do not follow good practices
+		Code debt		time taken to solve this problem in terms of hours/days/weeks
+				
+What is the tool we download and install for Sonar?
+	Sonar Qube
+
+
+download sonar qube from:
+	https://www.sonarqube.org/success-download-community-edition/
+
+unzip and extract to softwares folder
+	
+start sonar server:
+	in sonar folder, go to bin folder -> windows folder,
+	run the StartSonar.bat	script
+
+if your java_home refers to java 8:
+
+	 SonarQube requires Java 11 to run
+
+	in that case, change the env variable
+		JAVA_HOME		C:\Program Files\Java\jdk-11.0.1
+		path			C:\Program Files\Java\jdk-11.0.1\bin
+
+	Now again run StartSonar.bat
+
+go to browser 
+	http://localhost:9000
+
+it will prompt you to enter username and password
+		admin
+		admin
+		
+
+-------------------------------------------------------------------------------------
+Demo for using sonarqube to analyze the code quality of a core java project (maven)
+
+1) Create a java project
+2) Convert to maven project
+	right click project
+		Configure-> convert to maven project
+3) now you got pom.xml
+	add the following plugins:
+
+<plugin>
+  <groupId>org.sonarsource.scanner.maven</groupId>
+  <artifactId>sonar-maven-plugin</artifactId>
+  <version>3.7.0.1746</version>
+</plugin>
+
+<plugin>
+	<groupId>org.jacoco</groupId>
+	<artifactId>jacoco-maven-plugin</artifactId>
+	<version>0.8.1</version>
+</plugin>
+
+
+
+4) clean install the project (any of the following steps)
+	i) right click project
+		run as -> maven build (first option)
+			in the goals:-
+				clean org.jacoco:jacoco-maven-plugin:prepare-agent install
+
+	ii) go to cmd prompt to the location where pom.xml is present
+		mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install
+
+
+	what happens? the jar/war is created in target folder
+
+
+5) go to localhost:9000 portal
+	this is sonarqube portal
+
+	you have already logged in (admin:admin)
+	click "Add Project" in the top right corner
+		manually
+
+	type the project name and (display name is automatically typed)
+
+	create token	(type anything)
+		continue
+
+	choose "Maven"
+
+		click the copy+ in the right side
+
+i) Run the below command in cmd prompt where pom.xml is present:
+mvn sonar:sonar -Dsonar.projectKey=jf011-sonarqube-demo-1 -Dsonar.host.url=http://localhost:9000 -Dsonar.login=9d466306414cebdcf29b112c0b0f9aee854e3126
+
+(or)
+ii) Right click the project and run as "Maven Build" (2)
+	paste the below code in goals
+
+sonar:sonar -Dsonar.projectKey=jf011-sonarqube-demo-1 -Dsonar.host.url=http://localhost:9000 -Dsonar.login=9d466306414cebdcf29b112c0b0f9aee854e3126
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		
