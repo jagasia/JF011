@@ -1,0 +1,178 @@
+Once you complete a program or project,
+before you hand over, 
+find all unnecessary / observation code like System.out.println
+and replace the neccessary observation code into log entries (INFO, DEBUG, WARN, ERROR)
+
+You can choose same of different pattern for Console and File
+File logs to have date and time
+Console logs may have date or may not have
+
+You may also have rolling log files with fixed size of file.
+
+These log informations are very useful when we debug. (trace for logical errors)
+
+----------------
+Lombok
+	@Data
+	@AllArgsConstructor
+	@NoArgConstructor
+
+		generates the boilerplate code.
+
+--------------
+SonarQube
+	tool is used to analyze the code quality of any maven project
+		port 9000
+
+	Bug
+	Code smell
+	Code debt
+
+		code quality metrics
+
+(code smell)
+	commented out lines of code	
+	comments are different from commented out code
+	variable declared but not initialized or not used
+	unreachable code
+	class inside default package
+------------------------------------------------------------
+DATA STRUCTURES AND ALGORITHMS
+-------------------------------
+	Analysis of algorithms
+		Why ds and algo?
+			While solving a problem,
+			in any program, there are 
+				data
+				logic
+
+
+	in any program, (java terms) 
+		variables
+		methods
+
+	A class has only these 2 things
+		variable (or) constants			both are data members
+		methods					contains the login ie., algorithm
+
+	even in a simple problem,
+		adding 2 numbers
+
+	data: 2 numbers
+	algo:	+
+
+
+	we have algoirthms and datastructures in any program we write. 
+
+	If you know the algorithm and 
+	If you choose the right data structure, then
+	your problem is solved
+
+
+Why i say correct datastructure?
+
+	You know? Binary search?
+		in dictionary, we search for a "word".
+		We do not start searching from the first word to the last word.
+
+		we go to the middle of the book and predict or decide whether our word is in "left" or "right"
+
+	in this way, we eliminate half of the book from searching.
+
+
+This is called as binary search. 
+Imagine, if the dictionary is not in A-Z order. we cannot perform binary search.
+
+So, the binary search algorithm works only on a data structure which is already sorted.
+
+Algorithm can be very effective but only when it is used on appropriate data structure.
+
+Algorithms:
+	searching
+	sorting
+	find the efficiency of algo:
+		time complexity
+		space complexity
+
+		find the efficiency order of growth.	ie., when the size of the datastructure increases, then how the efficiency of the algorithm varies
+
+		for ex:
+			i use linear search. ie., start from first element, search until, found or end is reached
+			the efficiency is proportional to the size of the ds.	small list? small amount of time. large list, large amount of time
+			that is what the order of growth.
+
+		but not all algorithms are like that. Some algo is efficient surprisingly in a different way
+		some algorithms are poor efficient when sorting a list which is in descending order.
+		desc order is another way of sorted element. but blindly if we apply bubble sort, it will take maximum time always irrespective of the list being already sorted 
+
+Datastructures:
+	Linear
+	Non-linear	
+-----------------------------------------
+Linear
+	Array
+	LinkedList
+	Stack
+	Queue
+
+These are linear datastructures
+	because, they are linked like 
+		1->2->3->4->5->6
+
+
+	Linear means, there is an order.
+
+If i ask you to tell A-Z
+
+	ABCDEFGHIJKLMNOPQRSTUVWXYZ
+
+if i ask you what is the 15th alphabet?
+	O
+
+that means, our memory is linear. Each alphabet knows what is next
+
+
+ZYXWVUTSRQPONMLKJIHGFEDCBA
+
+	now, i am able to do that, because, my memory is double linked list
+
+
+This is what linked list.
+
+Singly linked list can traverse from first to last only
+
+Doubly linked list can travers from first to last and also from last to first
+
+
+Arrays
+	all of you know arrays.
+
+Why arrays are not sufficient to solve some problems.
+Why other datastructures are required.
+
+Limitations of arrays.
+
+Find the difference between various datastructures
+
+	Array
+	LinkedList
+	Stack
+	Queue
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
