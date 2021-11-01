@@ -159,16 +159,120 @@ Find the difference between various datastructures
 	Stack
 	Queue
 
+----------------------------------------------
+What was the observation?
+	What are the limitations of Arrays?
+	Why do we need other data structures?
+
+
+Arrays are fixed size. Cannot grow or shrink.
+Size of the array must be known while creating the array. Before adding elements.
+
+Suppose, you are booking 20 tickets for a movie, that is releasing on diwali.
+
+	sometimes, you find a theater, where 20 tickets are available. But not in same row, and not continuous.
+
+Arrays are contigeous means, they are allocated in continuous memory locations. 
+
+memory waste happens, when an element is no more required. You cannot reduce the size of the Array.
+
+
+
+in java, can you resize an array?
+
+int arr[]=new int[10];
+arr=new int[20];		//is it possible?		This line works in java.
+
+But you are not resizing the array (arr). Rather you are creating a new array (though the variable name is same)
+
+Arrays cannot be resized in java also.
 
 
 
 
+	
+
+scenario:
+	if you are finding all the prime numbers between x and y.
+	And you want to store those prime numbers in an array.
+
+	What should be the size of the array?		will it be (x+y)/2?		or x+y?	cannot confirm that
+							(x-y)/2?
+
+	1 and 20
+
+	x=1
+	y=20
+
+	3, 5, 7, 11, 13, 17, 19
+
+	answer is 7
+
+	-19/2
+	=9 or 10 would be answer based on formula
 
 
+	SO IT IS NOT EXACTLY the size of array needed to store prime numbers.
+
+Array is not suitable for this scenario.
+
+We need a datastructure that can store as many elements as required. and can grow or shrink.
+
+LinkedList
+Stack
+Queue
+
+When you learned java collections chapter, you learned 
+	LinkedList
+	ArrayList
+
+LinkedList belongs java.util package
+	can hold all the elements in the order in which they are added.
+
+But, if you try to create a linked list using java language, then you are learning data structures.
+
+Node.java
+	class Node
+	{
+		String data;
+		Node next;
+	}
+
+	class LinkedList
+	{
+		Node start;
+	}
 
 
+LinkedList
+Stack
+Queue
+
+import java.util.Stack;
+
+public class App2 {
+	public static void main(String[] args) {
+		
+		Stack<String> stack=new Stack<>();
+		stack.push("A");
+		stack.push("B");
+		stack.push("C");
+		stack.push("D");
+		stack.push("E");
+		stack.push("F");
+		stack.push("G");
+		
+		while(!stack.empty())
+			System.out.println(stack.pop());
+	}
+}
 
 
+Queue is an interface
+some implementation of Queue?
+	LinkedList
+	PriorityQueue
+		comparator or comparable are used
 
 
 
