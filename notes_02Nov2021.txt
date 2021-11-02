@@ -1,0 +1,199 @@
+Arrays
+LinkedList
+Stack
+Queue
+
+Queue
+	is an interface
+
+import java.util.PriorityQueue;
+import java.util.Queue;
+
+public class Main {
+
+	public static void main(String[] args) {
+		Queue<Integer> q=new PriorityQueue<>();
+		q.add(20);
+		q.add(2);
+		q.add(202);
+		q.add(120);
+		q.add(210);
+		q.add(201);
+		q.add(305);
+		q.add(250);
+		q.add(520);
+		q.add(24);
+		
+//		System.out.println(q);
+		for(int i=0;i<10;i++)
+		{
+			System.out.println(q.poll());
+		}
+		
+		//do not use for-each loop. You will not see the effect of comparable or comparator
+//		for(Integer i: q)
+//			System.out.println(i);
+	}
+
+}
+
+
+
+
+===============================
+
+public class Employee implements Comparable<Employee>
+{
+	private Integer Id;
+	private String name;
+	private Integer age;			//usually age is not an attribute. dateOfBirth could be the attribute. age can be derived attribute
+	
+	public Employee() {}
+
+	public Employee(Integer id, String name, Integer age) {
+		super();
+		Id = id;
+		this.name = name;
+		this.age = age;
+	}
+
+	public Integer getId() {
+		return Id;
+	}
+
+	public void setId(Integer id) {
+		Id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public Integer getAge() {
+		return age;
+	}
+
+	public void setAge(Integer age) {
+		this.age = age;
+	}
+
+	@Override
+	public String toString() {
+		return "Employee [Id=" + Id + ", name=" + name + ", age=" + age + "]";
+	}
+
+	@Override
+	public int compareTo(Employee o) {
+		return o.getAge().compareTo(this.getAge());
+	}
+	
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+import java.util.PriorityQueue;
+import java.util.Queue;
+
+public class App {
+
+	public static void main(String[] args) {
+		Queue<Employee> q=new PriorityQueue<Employee>();
+		q.add(new Employee(11, "Rama", 22));
+		q.add(new Employee(1, "John", 25));
+		q.add(new Employee(5, "Adbul", 23));
+		q.add(new Employee(9, "Suresh", 26));
+		q.add(new Employee(7, "Dinesh", 20));
+		
+		for(int i=0;i<5;i++)
+			System.out.println(q.poll());
+	}
+
+}
+
+
+
+
+-----------------
+Non-linear Data Structures
+
+Trees
+Graphs
+
+
+
+Trees
+	are like up-side-down tree structure.
+	Top of the tree is a "root" element
+
+	each element can have child elements
+
+	Elements are called as NODES
+
+	if every node can have 0 or 1 or 2 nodes only, then it is Binary tree
+
+	if left child node is always smaller than the right child node,
+		then it is Binary Search tree
+
+	because, it is favorable for searching operations.
+
+
+				50
+
+			25		75
+		
+		15	    30	      60 	90
+
+
+
+
+	sometimes, the benefit of binary search is not obtained 
+	ex:
+	
+		i am adding nodes to a binary search tree like below:
+
+
+			1
+				2
+					3
+						4
+							5
+								6
+									7
+
+
+in this case, it is almost or exactly a linked list. Linear structure.
+
+Just because, we added the elements in sorted manner, the tree loses its benefit of binary search.
+
+to find 7, we have to start from 1 and move to right. NO BENEFIT AT ALL.
+
+So we do rotations to maintain the height of the binary search tree.
+
+aim is such that
+	each node to have left-right or	right-left difference should be maximum 1
+
+but in above,
+	from root node?
+
+	root node is right heavy with right side 6 children. but in left 0 children
+
