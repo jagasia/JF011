@@ -122,3 +122,171 @@ Activity:
 ---------
 Understand the Datastructures (Tree & Map) and their terminologies and operations.
 Share the observations on Graph.
+
+
+=========================
+Algorithms:
+-----------
+	Searching
+	Sorting
+
+
+Searching:
+----------
+what are the types of searching algorithms?
+	linear (or sequential) search
+	binary search
+	hashing
+
+
+What is a linear or sequential search?
+	Simple algorithm that starts from the first element and continues to move towards end until the element
+		is found or the end of the list is reached.
+
+	Linear searches are done on linear data structures like	
+		arrays
+		linked list
+		queue
+		stack
+
+	linear search is suitable when the list is not sorted also. or sorted. If sorted, then the search can be stopped 	
+		even before the end of the list is reached
+
+
+	ex: a sorted list
+
+		1, 5, 9, 11, 14, 22, 35, 55, 100, 1000, 2567
+
+this is a sorted list
+
+	to find 40, we start from 1 and then to 5, 9, 11, 14, 22, 35, 55 
+
+	once reaching 55, we understand that, next coming elements definitely are above 55. and hence 40 will never be found.
+
+This is also a linear search but the list is in such a way that may save some time in searching.
+
+The disadvantage of linear search is
+	if the list is large, then the number of comparisons to find an element is more.
+	so the order of growth increase as the size of the list.
+
+the lists are usually unsorted. 
+
+	now, the order of growth also has 
+		best case scenario
+		and
+		worst case scenario
+
+
+Best case scenario:
+	suppose, we are searching for an element which is found in the first position of the list.
+	this is best case scenario, where there is only 1 comparison enough to find
+
+Worst case scenario:
+	suppose, we are searching for an element which is not found in the list at all.
+	in that case, i have to compare all the elements in the list
+
+---------------------------------------------
+Binary Search
+--------------
+	is possible only on the sorted list
+
+	1, 5, 9, 11, 14, 22, 35, 55, 100, 1000, 2567
+
+size of the list:
+	n=11
+
+suppose we need to find 9 here.
+
+find the mid
+	11/2	=	5
+
+	5 is the index of mid element
+
+compare
+	element at index 5 is 22
+	we are searching 9
+	since 9 is lesser than mid (22) hence, we search left side
+
+	mid=	(5-0)/2		=2
+
+	2 is the index of mid element
+
+compare
+	element at index 2 is 9
+	
+	9 == 9		found
+
+we have done 2 comparisons now.
+
+
+What is the best case scenario here?
+	search an element which is found in mid is the best case scenario.
+	1 comparison
+
+-----------------------------------------
+Hashing
+	this is the most effective searching algorithm for large list
+
+suppose, imagine, if you are supervisor of an exam hall.
+
+a candidate comes with id number as 25
+
+	you ask them to sit at 2nd row, 5th column
+
+candidate = 33
+	you ask them to sit at 3rd row, 3rd column
+
+so if you need to find where is the candidate 65 is sitting?
+	6th row, 5th column
+
+this looks very fast way of searching.
+
+This searching is faster than linear or binary search.
+
+But to be able to perform this, the data structure should support.
+
+in the above scenario, the candidates were arranged as 10 rows and 10 columns. Hence, 
+	we did
+		/ by 10 for finding the row
+		% by 10 for finding the column
+
+
+This formula is of my choice.
+
+Any formula can be used for hashing.
+Only thing is when we store elements, we use a hashing function to find the location where the node to be placed.
+
+Similarly we use the hashing function to find the element.
+
+but the problem may come in below scenario:
+
+suppose, if the candidate id is 123756
+
+we may use truncation technique to find only the last 2 digits to find the location.
+
+so 56 is taken as key and found the location.
+
+if another candidate id is 132456
+here also 56 is the key, so in that location ie., 5th row and 6th column, already a candidate is found.
+
+This is called as a collision.
+
+during collision, we can find chaining process. to find the next location where nobody is sitting.
+
+repeat until an empty space is found.
+
+in that case,
+
+we will have buckets.
+
+											
+formula is modulo by 4						find 10			10%4	=	2
+											
+	Bucket										
+	0	4	8	12	16		linked list 1				
+	1	1	5	9	13		linked list 2				
+	2	2	6	10	14						
+	3	3	7	11	15						
+
+
+
