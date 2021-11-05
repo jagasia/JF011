@@ -1,0 +1,176 @@
+We have learned data structures (linear, non linear)
+Algorithms (searching and sorting)
+	Searching
+		linear / sequential searching
+		binary searching on sorted data structures or trees
+		hashing		(we store elements in a location computed by a hashing function. We retrieve using the same function).
+
+	Sorting
+		While sorting the elements of a list, there are many sorting options.
+		Bubble sort
+		Quick sort
+		Insertion sort
+		Merge sort
+		
+
+Bubble sort:
+	starting from the first element, compare adjacent element and find if element at position 1 is smaller than 2. Otherwise, swap them
+	swap means, interchange the positions
+
+	To learn bubble sort, easiest way is to sort an array.
+
+	
+											
+		0	1	2	3	4	5	6	7	8	9
+		5	10	3	22	15	8	9	7	6	20
+											
+Pass 1	Comparison 1	5	10								
+Pass 1	Comparison 2	5	3	10							
+Pass 1	Comparison 3	5	3	10	22						
+Pass 1	Comparison 4	5	3	10	15	22					
+Pass 1	Comparison 5	5	3	10	15	8	22				
+Pass 1	Comparison 6	5	3	10	15	8	9	22			
+Pass 1	Comparison 7	5	3	10	15	8	9	7	22		
+Pass 1	Comparison 8	5	3	10	15	8	9	7	6	22	
+Pass 1	Comparison 9	5	3	10	15	8	9	7	6	20	22
+											
+		At the end of first Pass, n-1 comparison, the largest element is placed at the end of the list									
+											
+Pass 2	Comparison 1	3	5								
+Pass 2	Comparison 2	3	5	10							
+Pass 2	Comparison 3	3	5	10	15						
+Pass 2	Comparison 4	3	5	10	8	15					
+Pass 2	Comparison 5	3	5	10	8	9	15				
+Pass 2	Comparison 6	3	5	10	8	9	7	15			
+Pass 2	Comparison 7	3	5	10	8	9	7	6	15		
+Pass 2	Comparison 8	3	5	10	8	9	7	6	15	20	22
+											
+		At the end of second pass, n-2 comparison, the second largest element is placed at the end of the list									
+											
+Pass 3	Comparison 1	3	5								
+Pass 3	Comparison 2	3	5	10							
+Pass 3	Comparison 3	3	5	8	10						
+Pass 3	Comparison 4	3	5	8	9	10					
+Pass 3	Comparison 5	3	5	8	9	7	10				
+Pass 3	Comparison 6	3	5	8	9	7	6	10			
+Pass 3	Comparison 7	3	5	8	9	7	6	10	15	20	22
+											
+											
+		3rd pass			n-3 comparison						
+											
+		nth pass			n-n comparisonn		is zero comparison, we not significant				
+		n-1th pass			n-n-1	=	1 comparison				
+											
+											
+		n-1	n-2	n-3	n-4	3	2	1			
+
+
+
+
+============================
+
+Pass #1
+Comparing arr[0] with arr[1]
+Comparing arr[1] with arr[2]
+Comparing arr[2] with arr[3]
+Comparing arr[3] with arr[4]
+Comparing arr[4] with arr[5]
+Comparing arr[5] with arr[6]
+Comparing arr[6] with arr[7]
+Comparing arr[7] with arr[8]
+Comparing arr[8] with arr[9]
+Pass #2
+Comparing arr[0] with arr[1]
+Comparing arr[1] with arr[2]
+Comparing arr[2] with arr[3]
+Comparing arr[3] with arr[4]
+Comparing arr[4] with arr[5]
+Comparing arr[5] with arr[6]
+Comparing arr[6] with arr[7]
+Comparing arr[7] with arr[8]
+Pass #3
+Comparing arr[0] with arr[1]
+Comparing arr[1] with arr[2]
+Comparing arr[2] with arr[3]
+Comparing arr[3] with arr[4]
+Comparing arr[4] with arr[5]
+Comparing arr[5] with arr[6]
+Comparing arr[6] with arr[7]
+Pass #4
+Comparing arr[0] with arr[1]
+Comparing arr[1] with arr[2]
+Comparing arr[2] with arr[3]
+Comparing arr[3] with arr[4]
+Comparing arr[4] with arr[5]
+Comparing arr[5] with arr[6]
+Pass #5
+Comparing arr[0] with arr[1]
+Comparing arr[1] with arr[2]
+Comparing arr[2] with arr[3]
+Comparing arr[3] with arr[4]
+Comparing arr[4] with arr[5]
+Pass #6
+Comparing arr[0] with arr[1]
+Comparing arr[1] with arr[2]
+Comparing arr[2] with arr[3]
+Comparing arr[3] with arr[4]
+Pass #7
+Comparing arr[0] with arr[1]
+Comparing arr[1] with arr[2]
+Comparing arr[2] with arr[3]
+Pass #8
+Comparing arr[0] with arr[1]
+Comparing arr[1] with arr[2]
+Pass #9
+Comparing arr[0] with arr[1]
+
+
+//The following is the bubble sort program 
+
+
+import java.util.Arrays;
+
+public class Main {
+	public static void main(String[] args) {
+		int arr[]= {5,10,3,22,15,8,9,7,6,20};
+		
+		//bubble sort algorithm here
+		for(int pass=1;pass<=10-1;pass++)
+		{
+//			System.out.println("Pass #"+pass);
+			for(int i=0;i<10-pass;i++)
+			{
+//				System.out.println("Comparing arr["+i+"] with arr["+(i+1)+"]");
+				//compare the elements and swap if they are not in correct order
+				if(arr[i]>arr[i+1])
+				{
+					//swap
+					int temp=arr[i];
+					arr[i]=arr[i+1];
+					arr[i+1]=temp;
+				}
+			}
+		}
+		System.out.println(Arrays.toString(arr));
+	}
+}
+
+===========================
+The purpose of other sorting algorithms:
+	in bubble sort, even if the list is already sorted, unncessarily, all the passes and comparisons are performed.
+	so, we find other algorithms
+		some are suitable for large lists
+		some are suitable for partially sorted lists
+		some will follow divide and conquer approach
+			there are 10 elements in a list
+			if you split them into 2
+				5 + 5
+			sorting each sub list is simple
+			if you split it into 5
+				2+2+2+2+2
+			sorting 2 elements is always easy.
+			
+		sometimes, we find a pivot in the list. means, a position from where, the remaining portion of list is already sorted.
+		
+Task:
+	Identify various types of sorting algorthms and find what is significant in each algorithm
