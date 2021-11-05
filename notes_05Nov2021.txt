@@ -174,3 +174,48 @@ The purpose of other sorting algorithms:
 		
 Task:
 	Identify various types of sorting algorthms and find what is significant in each algorithm
+------------------------------------------------
+
+Design Principles and Patterns
+	When I learned Object Oriented Analysis and Design
+	OOA
+	OOD
+
+in OOD
+	Solid Principles:
+	------------------
+	GoF	(Gang of Four) 
+		their principles are Open for Extension, Close for modification.
+
+		If there is a class, and we need to create sub class. What we do, is extension. We do not alter the existing class.
+
+SOLID stands for
+	Single Responsibility Principle (SRP)
+	Open-Closed Principle (OCP)
+	Liskov Substitution Principle (LSP)
+	Interface Segregation Principle (ISP)
+	Dependency Inversion Principle (DIP)
+
+These principles are shortly called as SOLID principles.
+
+Employee e=new ContractEmployee();
+
+class EmployeeService
+{
+	EmployeeDao edao;		//interface	i can wire, any implementation of an interface	
+}
+
+do not force any class to implement interfaces which are not required.
+
+
+
+dip
+	Inversion of control
+	Dependendcy Injection
+
+
+
+
+http://www.cs.utsa.edu/~cs3443/notes/designPrinciples/designPrinciples.html#:~:text=Principles%20of%20Object-Oriented%20Design%20Single%20Responsibility%20Principle%20%28SRP%29,a%20class%20should%20have%20only%20a%20single%20responsibility.
+
+
