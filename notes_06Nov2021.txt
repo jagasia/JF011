@@ -1,0 +1,154 @@
+Yesterday, we learned SOLID principles.
+Now, we learn some design patterns
+
+what do you meant by patterns?
+	suppose, if you go back to JPA chapters, we created lot of projects, where 
+		Entity
+		Repository
+		Service
+		Controller
+
+	do we find a common pattern across these projects?
+
+we are following some pattern in every project.
+
+There are many such patterns.
+
+Some patterns help us to decide how to create objects
+	Creational
+
+Some patterns help us to decide how to organize the objects
+	Structural 
+
+Some patterns help us to decide how these objects interact with each other
+	Behavioral
+
+Creational
+Structural
+Behavioral
+
+What is the need for design patterns?
+	Suppose, if we have never interacted with each other. We are a part of a project.
+	ultimately, we need to get input, process, store them and compute and produce output.
+	This is what any project will do.
+
+	But one of you may write the database access code directly in the controller.
+	One of you may not even have an entity class. So you will have lot of variable instead of one object.
+	One of you may not have service class, even may not have repository also. 
+
+	Remember when you learned JDBC?	
+		in main method itself you would have done jdbc code. You did not have a DAO class, entity class etc.
+
+	You wont have Model, View, Controller. But you have a huge code that contains everything unorganized.
+
+During 90s, we were doing projects like that only, unorganized.
+	But every time, we do next project, we decided to follow some good practises that will avoid the problems
+	we faced in previous project.
+
+	These good practices have become the Design patterns.
+
+
+VO	Value Objects
+DAO	Data Access Objects
+MVC	Model View Controller
+
+
+Creational patterns:
+--------------------
+	now a days, we are not creating objects much using "new" operator.
+	
+	EmployeeService es=new EmployeeService();		//do you create like this?
+
+	NO. We are not creating object of service like above code.
+
+	@Autowired
+	EmployeeService es;					//notice? there is no "new" operator
+
+	Creational patterns provide the instance of a class or implementation of an interface
+
+	@Autowired
+	EmployeeRepository er;					//this is an interface. its implementation is provided by the dependency "spring-data-jpa"
+								//implementation is autowired by Spring IOC container
+
+	All such methods, where you do not create an object using "new" operator, you can think about creational patterns
+
+
+Example: (for creational patterns)
+
+	Singleton
+	Factory
+	AbstractFactory
+	Builder
+
+
+
+Singleton:
+----------
+	A class that has only 1 instance is a Singleton class.	(INTERVIEW QUESTION)
+
+	class SuperStar
+	{
+		private static SuperStar ss;
+		private SuperStar()
+		{
+			//you do not want anybody to create an object of SuperStar class. So have a private constructor.			
+		}
+		public static SuperStar getInstance()
+		{
+			if(ss==null)
+				ss=new SuperStar();		//private constructor is allowed here
+			return ss;	
+		}		
+	}
+
+
+//The above code is an example for Singleton class.
+
+There are singleton classes available in java.
+ex:
+	Runtime rt=new Runtime();		//NOT POSSIBLE. ERROR IN THIS LINE
+
+	Runtime rt=Runtime.getRuntime();	//This is correct. There is only one runtime available.
+
+
+
+Why creational pattern is so important to discuss?
+	If we create objects, then we are responsible for the scalability of the application.
+
+	But if you remember, Spring IOC, we are not creating the objects. we getBean() and spring is responsible for the scalability
+
+
+
+How you represent a complex object?
+	using a simple object, made of simple objects.
+
+	ex:
+		what is 50 factorial?
+			is 	50* 40factorial		(This looks so simple)
+
+		factorial(n)
+			is n*factorial(n-1)
+
+this example is just to understand how we can represent complex system using simple ones.
+
+tree
+	has root.
+	root have 2 nodes (max)
+	each have 2 nodes (max)
+
+this is also a way complex objects are arranged in simple.
+
+Structural pattern focus on how to organize the objects
+
+
+Task:
+-----
+Identify one or more lines about each pattern, in those 3 categories
+	Creational
+	Structural
+	Behavioral
+
+
+
+
+https://www.tutorialspoint.com/design_pattern/factory_pattern.htm
