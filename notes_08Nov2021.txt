@@ -1,0 +1,295 @@
+Stage 4
+	Spring REST with spring boot
+	Spring security
+	Microservices and Docker
+	Kubernetes
+	AWS
+
+
+what you have already learned:
+	Spring (in stage 2)
+		Spring core
+
+	Spring (in stage 2)
+		Spring MVC
+
+	Spring (in stage 3)
+		Spring Boot 
+			Hibernate			(hibernate template)
+			data JPA			(jpa repository)
+
+
+Since the project gets complex structure,
+it is advisable to follow patterns
+
+Design Principles and Patterns (in stage 3)
+
+
+In stage 4, we are more into the deployment:
+
+------------------------------------------------------------------
+REST
+	REpresentational State Transfer
+
+BEfore REST was introduced, there were webservices based on SOAP
+
+SOAP	
+	Simple Object Access Protocol
+
+You are already creating web applications.
+	From there, what is web service?
+
+You are creating a spring boot project now a days. How do you create???????
+	i) we may visit start.spring.io website where we can configure the java version, maven/gradle, etc
+		and we get a spring boot project downloaded
+	ii) in sts, we create a spring starter project, there also, we choose the same things
+
+what is start.spring.io???
+	this is a webapplication that provides
+		user interface
+		business services
+		
+
+but when we use sts, we are not going to the website.
+
+	rather, we are using the web service from our our front end. 	UI is provided by the STS.
+
+
+Another example:
+
+www.facebook.com
+	this is a web application
+
+but while logging into some other application like udemy or game apps or some other app,
+	that allows me to login using my facebook user id and password.
+
+	here, i am not going to the website. facebook.com
+	but i am getting the serive (authentication) of facebook. here, facebook i am accessing is not an application but service.
+
+
+
+Mobile Number:___________________
+Message:______________________
+	Send SMS
+
+
+SMS web service
+
+www.sendsmsindia.com/......asmx
+
+i submitted that html form to a servlet and that servlet calls the webservice and send the parameters
+and that web services sent the sms for us.
+
+that web service may have a method "sendSms(phoneNumber, message)"
+	web method that can be called from anywhere in the world using any platform or any programming language
+
+Web services introduced during 2001			(xml was introduced in 1999)
+
+	during 2001, the web services were SOAP webservices that send and receive information in XML format (SOAP format)
+
+but now RESTful webservices,
+	they support variety of data formats to be sent and received.
+		JSON
+		XML
+		
+
+JSON
+	JavaScript Object Notation
+
+In java:
+	@NoArgContructor
+	@AllArgsConstructor
+	@Data
+	class Employee
+	{
+		private Integer id;
+		private String firstName;
+		private String lastName;
+	}
+
+	Employee employee=new Employee(123,"Raja","Siva Kumar");
+
+	{"id":"123","firstName":"Raja","lastName":"Siva Kumar"}
+
+
+
+[{"id":"123","firstName":"Raja","lastName":"Siva Kumar"},{"id":"124","firstName":"Ravi","lastName":"Kumar"}]
+
+var arr=[1,3,55,22,29];
+
+
+Spring initializr, https://start.spring.io, @SpringBootApplication, SpringApplication.run()
+
+@SpringBootApplication
+	this annotation is a combination of lot of annotations
+	
+
+@Configuration
+public class MyConfiguration
+{}
+
+
+But if you notice in stage 3, you may never or mostly not created a configuration class at all.
+
+@SpringBootApplication
+	includes
+		@SpringBootConfiguration	
+			includes	
+				@Configuration
+
+ie., when you want a configuration class, separately we can create a class and use @Configuration
+	but we can do that in @SpringBootApplication class itself
+
+
+Makes Java development easy, avoids tedious development steps, reduces development time, 
+avoids writing boilerplate code, provides embedded tomcat server, avoid XML configuration
+
+	
+Difference between Spring and Spring Boot:
+	Spring boot is more into convention (over configuration)
+
+in spring, we specify the @ComponentScan(base
+and that path specifies the location where our classes, controllers, should be placed.
+
+but in spring boot, if you put your classes under base package or its sub package, we dont even need to specify the @ComponentScan
+ie., convention over configuration
+
+spring boot uses autoconfiguration
+
+Spring configuration xml, 
+spring xml schema spring-beans.xsd, 
+<bean>, id, class, <constructor-arg>, 
+<property>, name, value, 
+ClassPathXmlApplicationContext, 
+ApplicationContext, context.getBean(), 
+singleton scope, 
+prototype scope
+
+
+if you are using xml based configuration,
+	ClassPathXmlApplicationContext
+
+if you are using annotation based configuration,
+	AnnotationContextApplicationContext
+
+REST:
+-----
+	Principles
+		show you existing rest web services
+			fake rest api		(they are dummy web services for learning purpose)
+
+
+[
+  {
+    "userId": 1,
+    "id": 1,
+    "title": "delectus aut autem",
+    "completed": false
+  },
+  {
+    "userId": 1,
+    "id": 2,
+    "title": "quis ut nam facilis et officia qui",
+    "completed": false
+  }]
+
+
+
+https://jsonplaceholder.typicode.com/todos
+
+this is the base url for the REST API
+
+GET		meat to get information
+POST		meant to add a new entry
+PUT		meant to update existing records
+DELETE		meant to delete existing record
+PATCH		meant to update few of the properties of an object
+
+only the GET mapping can be accessed from browser's address bar
+for POST, PUT, DELETE we need to use post man to test those urls
+
+
+you can download and install post man for free
+
+GET		(to retrieve all records)
+	https://jsonplaceholder.typicode.com/todos
+
+GET		(to retrieve record based on id)
+	https://jsonplaceholder.typicode.com/todos/1
+
+POST		(to add a new record)
+
+
+
+
+
+Principles of Rest Services:
+	Uniform Interface:
+		In REST, everything is a resource. Resource may be a document, picture, video, module, class, method, etc. Anything that is available to service consumer. 
+		Resources are accessed using URI.
+		Each resource must have unique URI.
+		SAME URI but DIFFERENT HTTP methods
+
+	Statelessness:
+		no client state information is maintained at server
+		hence, scalable and reduced work load
+		
+	Layered System:
+		example, API in one server, Database in another server, authentication in another server	
+
+	Code on Demand:
+		different format based on demand. XML or JSON
+	
+
+
+RESTful webservices using Jersey
+RESTful webservices using Spring
+RESTful webservices using Spring boot	is very very simple in steps
+
+
+
+Create our first REST api
+1) create a spring boot application using spring starter with following dependencies:
+	Spring web		(this is where, @Controller, @RestController annotations are there)
+	devtools		(automatically refresh whenever we change and save the files)
+
+
+if you use @RestController	(instead of @Controller) then you are creating
+	REST api
+	RESTful webservice	
+
+2) where should i create a rest controller?
+	this is spring boot? more into convention. so follow that
+		right click the base package and create a class (annotate with @RestController)
+
+
+@RestController
+public class MyController {
+
+	@GetMapping("/")
+	public String home()
+	{
+		return "Hi welcome to our rest api";
+	}
+}
+
+
+suppose, if the above class was annotated with @Controller annotation,
+
+the method returns a String means, that it the view name.		URL
+we may use @ResponseBody to change that behavior that the method returns a Message than the URL
+
+so spring rest is like
+
+@RestController = @Controller + @ResponseBody
+
+
+
+
+
+Task:
+-----
+	Identify Difference between SOAP and REST
+
+	Create your first REST api 
+
