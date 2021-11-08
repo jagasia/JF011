@@ -293,3 +293,67 @@ Task:
 
 	Create your first REST api 
 
+
+
+
+GET
+POST
+PUT
+DELETE
+
+
+If you remember the spring data jpa examples we have done, one thing is common in the service class
+	C
+	R
+	U	
+	D
+
+create:
+	POST mapping for adding a new entity
+read:
+	GET for getting all the entities as a list
+	GET for finding 0 or 1 entity based on primary key
+update:
+	PUT mapping for updating an entity if found
+delete:
+	DELETE mapping for deleting an entity if found
+
+
+In this demo, we are going to create a rest api and test it in the post man.
+
+1) create a spring boot application using spring initializer and add the following dependencies:
+	spring web
+	spring data jpa
+	mysql connector
+
+	go to application.properties
+		
+spring.datasource.url=jdbc:mysql://localhost:3306/jf011
+spring.datasource.username=root
+spring.datasource.password=
+spring.datasource.driver-class-name=com.mysql.jdbc.Driver
+spring.jpa.database-platform = org.hibernate.dialect.MySQL5Dialect
+spring.jpa.generate-ddl=true
+spring.jpa.hibernate.ddl-auto = update
+spring.jpa.hibernate.show_sql=true
+spring.jpa.hibernate.naming.physical-strategy=org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+
+2) add an entity class to the project
+	Branch.java
+
+3) BranchRepository interface that extends Jpa repo interface
+
+4) BranchService class and autowire the repo
+
+5) BranchController		this is the rest controller we are going to do
+	autowire the service here
+
+6) test the rest api we have created in postman
+
+
+In MVC projects, you use @Controller
+
+	in controller, every method returns url / view / model and view
+
+whereas in @RestController
+	every method returns data/ content/ output (instead of redirection)
