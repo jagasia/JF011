@@ -1,0 +1,185 @@
+DispatcherServlet, 
+@RestController, 
+@GetMapping, 
+invoking get request from browser, 
+invoking get request from postman, 
+bean transformation to JSON, 
+APIs for bean to JSON and vice versa, 
+Jersey, Jackson, 
+get method with parameter, return array, @PathVariable
+
+Jersey framework
+Spring framework
+Spring Boot Rest API
+
+in all these frameworks, what actually happens?
+	All the requests are intercepted by the Disptacher Servlet
+
+
+how does the controller work differently when compared to Servlets and JSP
+
+in servlet concept, the servlet class is not a POJO class
+
+in controller, we create the POJO class and the methods are mapped to an URI/URL
+
+based on the request url, the Dispatcher Servlet will decide, which method of the controller should be invoked.
+
+Spring Boot as it is convention over configuration, we are not required to configure the dispatcher servlet.
+
+Auto Configuration.
+
+@RestController		instead of @Controller
+
+what is the difference between
+	@Controller
+	@RestController
+
+@RestController		=	@Controller + @ResponseBody
+
+Stateless
+
+@GetMapping
+@PostMapping
+@PutMapping
+@DeleteMapping
+
+These mapping annotations can be done also using
+
+@RequestMapping
+	method				GET
+	value		url		/employee
+	params				name of the submit button that called this url
+	consumes			JSON
+	produces			JSON
+
+
+
+@GetMapping("/employee")
+	all other things are assumes
+
+
+
+
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+
+public class NetClientGet {
+    public static void main(String[] args) {
+        try {
+
+            URL url = new URL("http://localhost:8080/my-first-rest-project/rest/home");//your url i.e fetch data from .
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("GET");
+            conn.setRequestProperty("Accept", "text/xml");
+            if (conn.getResponseCode() != 200) {
+                throw new RuntimeException("Failed : HTTP Error code : "
+                        + conn.getResponseCode());
+            }
+            InputStreamReader in = new InputStreamReader(conn.getInputStream());
+            BufferedReader br = new BufferedReader(in);
+            String output;
+            while ((output = br.readLine()) != null) {
+                System.out.println(output);
+            }
+            conn.disconnect();
+
+        } catch (Exception e) {
+            System.out.println("Exception in NetClientGet:- " + e);
+        }
+    }
+}
+
+
+
+google json	=	gson
+
+If the entity class (Branch) has only String or primitive times, there is absolutely no issues at all.
+
+Date
+byte[]
+
+
+
+REST parameters
+	URL can be appended with some data
+
+How do you map the URL appended data to the parameters of the rest api methods?
+
+1) /branch/{bid}
+	ex:
+		http://localhost:8080/branch/1
+
+	solution:
+		@GetMapping("/branch/{bid}")
+		public Branch findBranchById(@PathVariable("bid") String bid)
+		{
+			return bs.read(bid);
+		}
+
+2) /branch?bid=1
+	ex:
+		http://localhost:8080/branch?bid=1	
+
+		<form action="/branch">
+			<input type=text name=id />
+		</form>
+
+		here, the bid is a query string
+
+	solution:
+
+		@GetMapping("/branch")
+		public Branch findBranchById(@RequestParam("bid") String bid)
+		{
+			return bs.read(bid);
+		}
+
+
+3)	when we do not pass the data through URL, but through body,	(postman / angular httpclient)
+	
+	hint: use @RequestBody
+
+	@PostMapping("/branch")
+	public Branch addBranch(@RequestBody Branch branch)
+	{
+		return bs.create(branch);
+	}
+
+https://docs.jboss.org/resteasy/docs/1.0.2.GA/userguide/html/index.html
+
+
+
+Now, you have learnt
+Spring MVC project
+Spring REST api
+
+How can we integrate both of these 
+	ie., calling a rest api from a spring mvc project
+
+2 projects
+	mvc
+	rest
+
+There can be several REST apis created for different purposes. That makes this follow microservices architecture
+
+answer:
+	use Feign Client 
+		will transform the REST api urls into methods of an interface
+
+	then autowire that interface into the Controller (in mvc) and call the methods just like that.
+
+
+
+Task:
+1) Learn to create a REST api that uses
+	GET
+	POST
+	PUT
+	DELETE
+
+and test them in the post man
+
+2) Final check
