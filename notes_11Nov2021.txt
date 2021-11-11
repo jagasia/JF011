@@ -77,3 +77,65 @@ So i am going to create a MVC project that runs in 8081
 
 5) create an interface and declare the methods of REST api with @FeignClient
 
+
+
+========================
+How to remove an item from cart
+
+CartController
+
+@Autowired
+private CartService cs;
+
+
+
+cs.getAllCartItems()
+	List<MenuItem> 
+
+	for(MenuItem mi : items)
+	{
+		if(mi.getName().equals(ri))
+		//problem
+			ConcurrentModificationException
+	}
+
+
+Whenever we loop a list
+	inside the loop, if we remove an item, it will affect the boundary condition and we get the exception.
+
+	so the proper way to remove an item from the list while looping is to USE ITERATOR
+
+List<MenuItem> mitems
+
+it mitems.iterator();
+
+while(it.hasNext())
+{
+	MenuItem mi=it.next();
+	if(mi.getName().equals(ri))
+	{	it.remove();			//simple and safe.
+		break;
+	}
+}
+
+now the list is missing one item as required.
+
+this list should be updated to the cart
+
+FOR THAT SERVICE should have a method that will set List to the cart
+
+public class Cart
+{
+	List<MenuItem> 
+
+	getter
+	setter
+}
+
+
+
+
+server may have a method to get Cart.
+
+once you get Cart. you can get set the list
+
