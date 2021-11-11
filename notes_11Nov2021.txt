@@ -1,0 +1,79 @@
+After learning spring REST api,
+You may wonder how, we can access this REST api from a MVC Project.
+
+You know how to test a REST api using Postman.
+
+in MVC project, you provide VIEW for the end user to access the application.
+They can do CRUD operations using JSP front end.
+
+But the question is how will you access PUT, DELETE mappings from JSP form?????
+
+if i ask you how will you access GET/ POST mappings, you will be able to tell me
+
+@Controller in mvc project	(instead of @RestController)
+
+
+<form method="GET"		(yes)
+<form method="POST"		(yes)
+<form method="PUT"		(NO)
+<form method="DELETE"		(NO)
+
+you have lot of submit buttons in ONE form
+
+<FORM>
+	ADD
+	UPDATE
+	DELETE
+</FORM>
+
+
+
+You need a technique to access the REST API URLs from MVC project.
+Solution is:
+	Feign client
+
+In spring boot projects, we can add "Open Feign" dependency and use @FeignClient annotation to achieve this.
+
+by using feign client,
+	you will transform the REST API urls into METHODS of an interface, whose implementation is autowired in the 		controller
+
+	once you autowire that, you can call these rest api methods just like a java method.
+
+I give a demo on how to create MVC project that will access REST API (that we created for Branch entity)
+i will have a jsp page for Branch.
+
+
+Demo:
+
+The REST api is already running in port 8080.
+So i am going to create a MVC project that runs in 8081
+
+1) start.spring.io
+	or in sts i create spring starter project
+
+	choose the packaging as "war"
+
+2) add dependencies:
+	Spring web
+	DevTools
+	OpenFeign
+
+3) in main application class
+	under the 
+	@SpringBootApplication
+
+	add the annotation
+	@EnableFeignClients
+
+
+4) Hello world index.jsp all the steps are confirmed
+	created the folders under "webapp"
+	application.properties 
+		
+		spring.mvc.view.prefix=/WEB-INF/view/
+		spring.mvc.view.suffix=.jsp
+
+		server.port=8081
+
+5) create an interface and declare the methods of REST api with @FeignClient
+
