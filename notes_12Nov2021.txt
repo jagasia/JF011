@@ -1,0 +1,140 @@
+Spring REST
+
+every method is independant
+
+statelessness
+
+Spring security
+	OAuth2
+	JWT
+
+Spring boot provides starter dependencies 
+	security
+
+Once we add the starter security dependency,
+	it will auto configure the security
+
+1) create a spring boot application with security starter dependency
+2) basic authentication using our own user name and password
+3) Open authentication, ie., the users are allowed to login using their gmail account.
+
+JWT
+	JSON web token
+
+	When i login, i get a token. That token can be used in the headers of the request so that i am considered as 		already authenticated.
+
+
+1) create a spring boot starter project
+	add the following dependencies:
+		spring web
+		spring security
+
+2) create a rest controller with a simple hello message
+
+3) run the application and test it in the browser
+
+Instead of getting the hello message, we see a login page.
+	username:		user
+	password:		<<copy the password from the console>>
+
+
+4) now, go to pom.xml
+	comment the security starter dependency
+
+5) restart the application
+
+	now check the url, you are able to see the hello message
+
+6) now go to SpringBootApplication and do as follows:
+	@SpringBootApplication(exclude = SecurityAutoConfiguration.class)
+
+7) restart the application
+	now, you see that security is not in effect
+
+
+-----------------------
+in next demo, we will authenticate users based on username and password defined by us.
+
+1) configuration:
+	class that extends WebSecurityConfigurerAdapter
+2) UserDetailsService
+	we are using starter security. that includes
+		User
+		UserDetails
+		UserDetailsService
+
+
+in this basic authentication,
+package com.example.demo.service;
+
+import java.util.ArrayList;
+
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
+
+@Service
+public class MyUserDetailsService implements UserDetailsService
+{
+
+	@Override
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		return new User("sakthi", "jag", new ArrayList<>());
+	}
+
+}
+
+
+
+------------------------------
+package com.example.demo.config;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.password.NoOpPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+
+import com.example.demo.service.MyUserDetailsService;
+
+@EnableWebSecurity
+public class MySecurityConfig extends WebSecurityConfigurerAdapter
+{
+
+	@Autowired
+	private MyUserDetailsService userDetailsService;
+
+	@Override
+	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+		auth.userDetailsService(userDetailsService);
+	}
+	
+	@Bean
+	public PasswordEncoder passwordEncoder()
+	{
+		return NoOpPasswordEncoder.getInstance();
+	}
+	
+}
+
+
+========================================
+next demo, how to use a database table for login authentication?
+
+LETS USE mysql database "jag"
+Table is : myuser
+
+username 
+password
+
+
+
+
+1) security with generated password
+2) basic user name and password
+3) jpa repository
