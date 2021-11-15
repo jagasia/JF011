@@ -1,0 +1,159 @@
+Microservices
+
+	Microservices Basics, 
+	Monolithic to Microservices	
+	Spring RESTful Web Services, 
+	server.port definition
+
+Spring Cloud
+	features of Spring cloud
+
+
+-----------------------------------------------
+Have you ever learned/ used webservice?
+	we create a rest api?
+		REST api is also called as RESTful Webservice.
+
+	So we know webservice.
+
+
+web services solve a major problem.
+
+	interoperability:
+		heterogenous applications (means, they are developed in different language and different platform)
+		ex:
+			.net application
+			java application
+
+				both are different in language and platform
+
+		payment gateway
+		sms gateway
+			they are developed by one enterprise in some platform and language. But they are accessed 			from any other applications developed in any language or platform.
+
+		this is possible because of web service.
+
+		INTEROPERABILITY
+
+
+nOW, Microservices are not entire new technology. You are going to use webservices definitely in microservices.
+
+what are the additional features that makes a restful webservice as a microservice?
+
+
+the term micro means????????
+	lowest granularity.
+
+	i am sharing some code/ service to others. How granular the service is????
+		only 1 method i am able to share with others. using an URL/URI i am sharing only 1 method
+
+
+SOAP webservice do not have URL for every method. It has 1 url for entire web service. (that may have several methods)
+
+so we do not consider SOAP webservice in micro services architecture.
+
+there are lot of challenges in microservices. And hence, there are lot of solutions also. 
+
+1) service discovery.
+2) load balancer.
+3) circuit breaker.
+4) service communication.
+5) distributed messaging.
+6) routing.
+
+
+
+How many of you know Spring boot CLI?
+
+using command prompt itself we can do a lot.
+i) to create project?		we can do it from start.spring.io
+ii) to build project?		we can do it in cmd prompt			mvn clean install
+iii) to run the project?	in cmd prompt.
+iv) to get log info		of course in cmd prompt.
+
+mostly we do everything in cmd prompt. using CLI
+
+one thing i am going to show you. That will give you great idea of Spring Boot CLI
+
+@RestController
+class FirstApplication {
+   @RequestMapping("/")
+   String welcome() {
+      "Welcome to Jag india.com"
+   }
+}
+
+
+this is not java. This is groovy script.
+
+
+
+https://www.javatpoint.com/features-of-spring-cloud
+
+
+What is a monolithic application?
+	is a single project that provides 
+		front end?	/ 	view	/	presentation	
+		business logic	/	services
+		data services	/	dao	/	data layer
+
+always three layers
+	presentation
+	business
+	data
+
+if all these three services are provided by a single application, then we call it as a monolithic application
+
+	MS Access		if we use FORMs for presentation. Then accdb	or .mdb file itself is enough for whole application
+
+	MS Excel
+
+
+
+------------------------------
+1) Eureka Server
+2) Eureka clients
+
+
+
+
+Steps to create eureka server:
+1) create a spring boot starter project
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
+		</dependency>
+
+
+2) under @SpringBootApplication
+	@EnableEurekaServer
+
+3) go to application.properties
+
+	eureka.client.registerWithEureka = false
+	eureka.client.fetchRegistry = false
+	server.port = 8761
+
+4) run the project and check the
+	localhost:8761
+
+---------------------------------------
+Client - 1
+----------
+
+1) create a spring boot start project
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+		</dependency>
+
+2) under @SpringBootApplication
+	@EnableEurekaClient
+
+3) in application.properties			(we register this app as a client for the eureka server)
+
+server.port=8383
+spring.application.name=account-service
+eureka.instance.hostname=localhost
+eureka.client.serviceUrl.defaultZone=http://${eureka.instance.hostname}:8761/eureka/
+server.context-path=/account
