@@ -100,3 +100,53 @@ we should CREATE a docker image for our own spring boot application
 
 docker run -p 5000:5000 in28min/todo-rest-api-h2:1.0.0.RELEASE
 
+
+we learnt to run an existing docker image from hub.docker.com
+
+Now, we are going to create a spring boot application
+	and deploy it in docker hub
+
+for that, we need to create a "Dockerfile" and specify the details required to pack them into an image
+
+we will use few commands to 
+	create an image
+	tag the image to a repo in docker hub
+	push the image to the repo 
+
+
+Steps:
+1) create a spring boot application
+	server.port=5000
+2) create the jar / war file 
+	right click project
+		run as 
+			maven build
+				clean install		(in the goal)
+
+
+3) create a Dockerfile
+	preferrably in the location where pom.xml is present.		(you may choose any location but it is a 									relative path)
+
+	in Dockerfile, we are specifying the location of jar file. The jar file is present inside "target" folder from pom.xml location.
+
+
+	Dockerfile		does not have any extension
+
+FROM java:8
+EXPOSE 5000
+ADD target/jf011-demo-1-0.0.1-SNAPSHOT.jar jf011-demo-1-0.0.1-SNAPSHOT.jar 
+ENTRYPOINT ["java","-jar","jf011-demo-1-0.0.1-SNAPSHOT.jar"]
+
+
+4) go to cmd prompt to the location where Dockerfile		is present
+
+	i)docker build -t jf011-demo-1 .
+	ii)	go to hub.docker.com		login and create a repository 	jf011-demo-1
+			docker tag jf011-demo-1 jagindia/jf011-demo-1
+
+	iii)
+		docker push jagindia/jf011-demo-1
+
+
+5) any of you can run my docker image using the below command:
+	docker run -p 5001:5000 jagindia/jf011-demo-1
