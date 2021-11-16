@@ -1,0 +1,102 @@
+Yesterday, we have installed Docker.
+
+in cmd prompt:
+	docker --version
+
+now, lets learn Docker
+
+Lets run an application that is already deployed in hub.docker.com
+
+Docker hub
+	is a repository where docker images are deployed
+
+
+so we can run any of those docker images/ repositories in our computer.
+in that process, we actually, download docker image to our local image repository
+
+at this moment, lets see in our computer, how many docker images are there?
+
+
+to get the list of docker images in our system:
+	docker images
+	(or)
+	docker image ls
+
+
+
+to remove a docker image from your system	(rmi = remove image)
+	docker rmi <<image name>>
+
+
+when you run a docker image, it becomes a container.
+
+Have you ever heard about "container"
+
+when we learnd servlets, jsp there was something called "web container"
+
+in spring, 	IOC container
+
+all these containers are "Special JVM" (in java)
+
+that provides space, runtime environment, and necessary support for RUNNING the application.
+
+Container is a running instance of the image
+---------------------------------------------
+
+
+to check the list of containers running in our computer:
+	docker container ls
+	(or)
+	docker ps
+
+
+
+PLEASE SIGNUP to hub.docker.com
+
+
+run the below command: (there is a docker image of spring boot application in docker hub. we are going to run that image in our computer now.)
+
+	docker run -p 5000:5000 in28min/todo-rest-api-h2:1.0.0.RELEASE
+
+
+docker run
+	is the command to run an image (which is present locally or in docker hub)
+	if it is not present locally, it will download it as a local image and then only it will run.
+
+-p
+	to specify the port in which the application should run.
+	first 5000	is to specify our choice of port in our computer
+	second 5000	is the port they have specified in their program
+
+	we may ignore the second port number also. Or if you want to find, run without -p switch. in console we can find the port (it may say the port is alreay occupied)
+
+
+in28min/todo-rest-api-h2:1.0.0.RELEASE
+	what is this?
+		in hub.docker.com,
+			in28min		is the name of an account
+			todo-rest-api-h2:1.0.0.RELEASE		is the name of repository
+
+
+
+
+Unable to find image 'in28min/todo-rest-api-h2:1.0.0.RELEASE' locally
+
+
+docker ps -a
+	for listing all docker containers (even if it is running invisibly)
+
+find the docker containers and remove them
+	if the container does not allow your to remove, because it is running, we can forcibly remove them
+		using 	-f switch
+
+docker rm <<container id>>
+docker rm -f <<container id>>
+
+-----------------------
+Next level:
+
+we should CREATE a docker image for our own spring boot application
+
+docker run -p 5000:5000 in28min/todo-rest-api-h2:1.0.0.RELEASE
+
