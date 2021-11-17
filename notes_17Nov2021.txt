@@ -1,0 +1,70 @@
+Docker
+	installed
+	run a docker image from hub.docker.com
+	create a docker image of a spring boot application that we created
+	docker image is tagged to the docker hub repository
+	pushed the same into docker hub
+
+	After that, your docker hub image can be run from any other computer where docker is installed.
+
+
+
+when you have an application that connects with a database (ex: mysql)
+in that case, mysql runs in a separate process 
+spring boot application runs in a separate process.
+
+the challenge you face in docker is how to run 2 docker images and those 2 processes be able to connect with each other.
+
+i) use network to connect mysql from spring boot
+ii) docker compose	(used to specify multiple docker images in one execution)	yml
+
+
+Already there is a mysql image in docker hub portal
+
+we can use that mysql image and run it as a container. Once it becomes a container, then mysql is running in your system. (remember, even if mysql is not present in your computer, we can use docker image of mysql)
+
+1) create a network
+	docker network create jf011-mysql
+2) create mysql container
+	docker container run --name mysqldb --network jf011-mysql -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=jf011 -d mysql:8
+
+3) in our spring boot application, 
+	we are going to use these information in application.properties
+		url, driver, username, password
+
+	in url, usually we do
+		jdbc:mysql://localhost:3306/jf011
+
+	but now, it will be
+		jdbc:mysql://mysqldb:3306/jf011
+
+
+HOW WILL YOU GO TO MYSQL PROMPT 
+	to create database
+	to create tables
+	to check records
+
+Run the below command to get the mysql command prompt:		
+		docker container exec -it mysqldb bash
+login to mysql using:
+		mysql -uroot -p
+
+
+show databases;
+use jf011;
+
+we create a project and test it using local mysql database connection.
+Then we change the application.properties with docker mysql connection information. But it will not run.
+So we create .jar / .war file using maven clean install 	-Dmaven.test.skip=true
+
+since we do not do this in cmd prompt, we right click and maven build. while typing clean install, we see option to skip test also. Tick that check box and get war
+
+
+Create a docker image of our mvc project
+	docker image build -t docker-mysql-demo-1 .
+
+
+check docker images
+
+
+docker container run --network jf011-mysql --name jf011-mvc-mysql -p 5000:5000 -d docker-mysql-demo-1
