@@ -1,0 +1,83 @@
+Docker
+	install docker
+	start docker engine
+	check the docker images in our system
+	check the docker containers running in our system
+	learnt to remove images and containers
+
+	run docker images from hub.docker.com
+	create docker images 
+	tag the docker image to a repo in hub.docker.com
+	push the docker images to repo in ....
+
+	run mysql in a network
+	run docker image in the same network
+		so that the docker image application (mvc) can access the mysql (ie., also an image) using same n/w
+
+
+Kubernetes
+	what do you know about container?
+		a running instance of docker image is the docker container.
+		an application runs in a container. This makes our deployment process easier.
+		container contains all that are required to run a program	
+			OS features,	
+			memory
+			system files
+			jre
+
+	we are going to deploy our application in AWS/ GCP/ Azure
+		these are Giant Cloud service providers.
+
+	Amazon	
+		AWS		Amazon Web Services
+	Google
+		GCP		Google Cloud Platform
+	Microsoft
+		Azure		Azure Cloud
+
+so, when we deploy (means, upload) our project, the cloud, should be able to provide all that supporting platform, jre, etc. in order to ensure that our project runs exactly as it runs in our local computer.
+
+to avoid this trouble, what if we deploy our application as a docker image??????????
+
+Now, we are concerned about the scalability and elasticity of the application.
+
+Scalability is the ability to scale to changing needs.
+	if more users or more transactions, happen, i need or consume more resources
+	and same as less also.
+	This is called scalability.
+
+	You need to attend a session for 8 hours, you subscribe mobile data for around 4 gb
+	You have only half day then you can subscribe only 2 gb
+
+scale to the growing or decreasing needs, using same infrastructure.
+but if you can provision more infra then it is elasticity.
+
+auto-scaling
+
+Elasticity	=	Elastic Scalability
+
+When you come to elasticity, we are talking about running our application in a cluster of nodes (rather than a single node)
+
+Cluster
+	in 2004, i came to know that Google uses around 40k servers as a cluster.
+	can give your search result less than a second.
+	in those days, when we search for a file in our local hard disk, it takes several seconds to find a file.
+	
+Docker - we run an application in one container
+Kubernetes - we run an application in cluster
+
+
+in AWS
+	kubernetes is called as EKS		Elastic Kubernetes Service
+
+minikube
+	can be installed in our computer and do kubernetes orchestration
+
+eksctl
+	can be installed so that we can deploy our application in AWS EKS
+
+---------------------------------
+How many of you have aws account?
+
+https://aws.amazon.com/
+
