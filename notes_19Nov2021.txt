@@ -1,0 +1,62 @@
+Yesterday, we logged into the aws portal.
+
+https://aws.amazon.com/
+
+1) we will learn now, to deploy a spring boot application in aws
+
+	i) create a simple rest api ie., spring boot application with @RestController
+	ii) server.port=5000
+	iii) generate jar file		
+		right click the project 
+			run as 
+				maven build	
+					goals: 		clean install
+
+	same can be done by going to command prompt in the location where pom.xml is present
+		mvn -Dclean -Dintall build
+
+2) login to aws portal
+	https://aws.amazon.com/
+
+	we are going to deploy the spring boot app in Elastic Beanstalk
+		allows us to deploy .jar or .war files directly
+
+
+
+	go to elastic beanstalk
+		create application
+			name: jf011-aws-1
+			platform: java
+				leave other options as it is
+
+		application code
+			sample/your code?	
+			upload your code
+				and select the jar file from target folder
+
+
+
+when i create an application, an environment is also created.
+	without environment, an application cannot be run.
+
+if appln name is jf011-aws-1
+then the env name will be 
+	jf011aws1-env	
+
+
+the env should be a part of a default VPC
+	if required, create default vpc from env itself. That is simple
+
+if RDS ie., relational database service is required, it should be a part of atleast 2 availability zones
+
+
+
+		
+
+Creating load balancer failed Reason: Default VPC not found (Service: AmazonElasticLoadBalancing; Status Code: 409; Error Code: InvalidConfigurationRequest; Request ID: 2cbce1b2-0d85-4918-b3ff-264a7b520f55; Proxy: null)
+
+
+Default VPC not found 
+	i have deleted that default vpc earlier. so i am getting this error.
+	solution:
+		i am going to create it now.
