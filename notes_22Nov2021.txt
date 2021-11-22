@@ -1,0 +1,124 @@
+on saturday,
+	we created an elastic beanstalk application
+	and the environment is configured to have mysql database	RDS	
+
+we created 2 projects in aws
+1) REST api		.jar	that connects with RDS and also provides rest controller CRUD
+2) MVC project		.war	that provides jsp front end and @Controller	
+
+	the mvc project accessed the rest api using feign client.
+
+Today,
+ECR
+ECS
+
+
+ECR
+	Elastic Container Registry
+
+		this is almost similar to hub.docker.com		
+
+Docker hub
+	where, we deploy the docker images.	Local image becomes remote image. So that anybody from anywhere can run our image (by pulling the image)
+
+pull
+	remote image becomes a local image	(copy)
+
+push	
+	local image is pushed to docker hub as a remote image
+
+tagname to specify the version of the image				:latest
+	:tagname
+
+
+
+ECR
+	allows us to register the docker images in aws registry.
+	what is the use?
+		anybody from anywhere can pull the image, run the image in their system	(same as docker hub)
+
+	Docker image is not going to run in AWS server at all. This is passive thing. 
+	it will run in our local computer when we pull and run these docker images.
+
+
+
+Cloud computing
+
+what are the basic services provided by cloud service providers
+	Storage
+	Compute
+	Networking
+
+
+i can deploy a java application in cloud. but will it execute and produce output?
+the cloud is also provided a runtime environment to produce dynamic output.
+
+
+Elastic Compute Cloud		EC2
+
+Elastic Beanstalk
+Elastic Container Service
+	these comes under EC2 because, they are capable of running our code in cloud and produce output
+
+But ECR
+	is not under compute. because, it provides space for storing our docker images only. But not run at cloud.
+
+
+
+install aws cli
+
+aws configure
+(the access key id, secret key can be found in our account dashboard)
+
+
+
+
+C:\Users\rjaga>aws configure
+AWS Access Key ID [****************34UP]: AKIAQN3NBJXVUP
+AWS Secret Access Key [****************fJxo]: LFjRlBwWh4YJkkd6ckkvDN3jRiifJxo
+Default region name [ap-south-1]: ap-south-1
+Default output format [None]: None
+
+
+
+Demo:
+
+docker images
+	we see there is an image "jf011-demo-1"
+	we are going to push this docker image (local image) to ECR
+
+1) create a repository in ECR
+	aws ecr create-repository --repository-name jf011-1 --region ap-south-1
+
+
+
+docker login --username AWS --password-stdin 029756575211.dkr.ecr.ap-south-1.amazonaws.com
+
+
+
+docker tag jf011-demo-1:latest 029756575211.dkr.ecr.ap-south-1.amazonaws.com/jf011-1:latest
+docker push 029756575211.dkr.ecr.ap-south-1.amazonaws.com/jf011-1:latest
+
+
+
+
+
+029756575211.dkr.ecr.ap-south-1.amazonaws.com/jf011-1:latest
+
+docker run -p 8080:5000 029756575211.dkr.ecr.ap-south-1.amazonaws.com/jf011-1:latest
+
+
+-----------------------
+Task:
+	create a local docker image
+
+	create a repo in ECR
+
+	PUSH the local docker image to ECR repo
+
+	run the docker image from ECR
+
+----------------------------------------
+
+ECS
+	the image runs in AWS itself.
