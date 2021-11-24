@@ -1,0 +1,62 @@
+you will be getting the aws access
+	URL
+	username
+	password
+
+to login to aws portal and do the practicals.
+
+from Dec 1st (hopefully)
+--------------------------------------------
+start cloud learning once again.
+
+
+learn concepts that will help us in projects
+
+sign up
+login
+logout
+
+CRUD
+	ticket		transportation
+	medicine	hospital
+	books		education
+	product		e-commerce	
+
+whatever the domain may be 
+the operations we do are same
+
+------------------
+Task:
+-----
+signup 
+
+sign up is a process where an user registers themselves by filling a form
+i) the form will not be submitted, if there are any validation failure.
+ii) on successful submission, the application should store a row in the USER_MASTER table
+
+TO DO this task,
+
+you have to 
+i) define a table		USER_MASTER
+ii) create entity class in java		User.java
+iii) UserRepository.java		interface that extends jpa repository
+iv) UserService.java			class that autowires the repo
+v) UserController.java		
+	//for signing up, actually you are adding a row in the user table
+
+	addUser()		could be the method. Or you can name it as signup() method itself
+
+
+you can proceed to do CRUD methods
+	create			//signup
+	read
+	read			//login			you can name it as login method. SURE
+	update
+	delete
+
+
+in future, it may be useful to do password updation or email id change or name change or anything
+
+
+table should not have confirmpassword as a column.	That is only for front end validation.
+
