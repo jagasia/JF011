@@ -1,0 +1,119 @@
+Retail Banking	(kowsalya & team)
+
+
+
+
+----------------------------------------
+Task i have given yesterday, is for practise or learning purpose.
+
+For your project, the USER entity should be created as per project document.
+
+For ex:
+	username
+	firstName
+	lastName
+	dateOfBirth
+	email
+
+For other project:
+	userId
+	password
+	dob
+	emailAddress
+
+
+
+All these information, should be found from the document. If it is not clear, then you may have to form the details and get approval from the mentor.
+
+What are the processes we cover in Retail Banking?
+	it is decided by the document.
+
+when an user creates account or opens account, what are the details we collect from them? (in application form)
+	that will decide the columns to be present in the table.
+
+The application form seems very large.
+	may be 4 pages
+
+Are we going to have a large table?	having 20 columns?
+	we will do normalization.
+
+		aims to avoid redundant data entry.
+		
+	ex:
+		City is Chennai. 		Then why should we have a column "State"
+
+	Chennai means, Tamil Nadu only. THat information should be present as a separate table "CITY_MASTER"
+
+	like that, we may do normalization and split the tables. Aiming to avoid redundancy and inconsistency
+
+	CHENNAI	TAMIL NADU
+	CHENNAI TAMILNADU
+	CHENNAI	TN
+
+
+	See the possible inconsistency!
+
+	SELECT * FROM APPLICANT WHERE STATE='TAMIL NADU'
+		i should get 3 records. But i get only 1 record. Because of inconsistency
+
+
+
+
+
+
+
+database table and column naming convention
+1) exactly same as java class and properties
+	Product.java
+		class Product
+		{
+			private Integer productId;
+			private String productName;
+		}
+
+	TABLE:	Product
+			productId INT primary key
+			productName	VARCHAR(50)
+
+
+2) _ underscore wherever next word comes			(FULL CAPITAL WITH UNDERSCORE)
+	Product.java
+		class Product
+		{
+			private Integer productId;
+			private String productName;
+		}
+
+	TABLE:	PRODUCT
+			ID INT PRIMARY KEY
+			PRODUCT_NAME VARCHAR(50)
+
+		SALES
+			ID
+			SALES_DATE
+			PRODUCT_ID		A foreign key is like	<<TABLENAME>>_<<PRIMARYKEYNAME>>
+						
+
+
+	This strategy is the default strategy used by JPA Repository. 
+	we are usually changing this strategy using application.properties settings:
+		spring.jpa.hibernate.naming.physical-strategy=org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+
+		this above settings is used to follow 1st strategy
+		if we did not use the above setting, then it will follow 2nd strategy
+
+
+the column names and the table name can be chosen using annotations
+
+@Entity
+@Table(name="EMP")
+public class Employee
+{
+	@Id
+	@Column(name="ID")
+	private Integer id;
+}
+
+
+All the team members share the database script with each other.
+
