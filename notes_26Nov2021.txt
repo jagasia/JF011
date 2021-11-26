@@ -117,3 +117,75 @@ public class Employee
 
 All the team members share the database script with each other.
 
+
+
+===================================
+
+From the morning observations:
+
+1) in spring boot application, 
+	create all the 
+		entity
+		repo
+		service
+		controller
+
+		under the base package as sub package.
+
+	ex:
+		com.example.demo
+			if the above is the base package. (it is base package, because, main method is present in a class ProjectNameApplication.java	that is present under this package).
+
+	
+com.example.demo.model
+com.example.demo.repository
+com.example.demo.service
+com.example.demo.controller
+
+do not change the base package like		com.example.model		(PROBLEM)
+
+2) interface, class names must be First letter capital
+	StudentRepository
+
+		only for variables and methods, first letter is small letter
+
+
+-------------------
+Create validations for the signup form
+
+	All the fields are mandatory.
+	Password must be atleast 8 character.
+	Also create custom rules like password must contain atleast
+		an upper case alphabet
+		a lower case alphabet
+		a number
+		a symbol
+
+	when the form is submitted, the form must display error messages in red color when form validation is failed
+
+@Size
+@NotNull
+
+
+ex:
+
+    @Size(min = 3, max = 20)
+    private String firstName;
+     
+    @Size(min = 3, max = 20)
+    private String lastName;
+     
+    @Pattern(regexp=".+@.+\\.[a-z]+")
+    private String email;
+
+
+use them in Entity class
+
+@Valid		BindingResult		(binding result must be the last argument in the controller method)
+in the controller methods
+
+in JSP
+<form:error
+
+that will display only when there is error.
+
