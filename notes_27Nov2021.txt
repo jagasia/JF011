@@ -1,0 +1,51 @@
+APIs
+	are the REST api
+
+service
+	create
+	read
+	read
+	update
+	delete
+
+
+each method should be tested using junit test cases
+
+
+Swagger
+	what is the need for swagger?
+
+one of you create a RESTful web service	(rest api)
+other member is accessing that REST api
+	this member is not aware of what are the methods (URL) available for invoking.
+
+	simply, there is no documentation found for the REST API
+		IN THOSE days, when we learned SOAP web service, there was documentation (WSDL)
+
+	but in rest api, there is no documentation.
+
+In order to create documentation for REST api, swagger is introduced.
+
+documentation
+	provides the list of operations exposed by the api.		
+		operations = methods			methods are exposed using url
+
+Lets see a demo for swagger:
+----------------------------
+If you already have a REST api:
+--------------------------------
+	i) add the following dependency:
+<dependency>
+    <groupId>io.springfox</groupId>
+    <artifactId>springfox-swagger2</artifactId>
+    <version>2.9.2</version>
+</dependency>
+
+	ii) use the below annotation under @SpringBootApplication (or) @Configuration
+@EnableSwagger2
+
+	thats all. Its' done.
+		ok. But where is the documentation?????	(go to the URL and append /v2/api-docs)
+			http://localhost:8080/book/v2/api-docs
+
+
