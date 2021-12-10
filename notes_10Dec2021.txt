@@ -1,0 +1,85 @@
+1) We are in Sprint 2 of MFPE
+	in sprint 2, 
+		validation of data entry in forms
+			if angular, then you are using "Reactive Form" then validators and custom validators
+			if mvc, then use @Valid		and hibernate annotations like @Min	BindingResult
+
+		Exception Handling
+			the program should display comprehensive error messages and do not terminate abruptly.		
+			we give another chance for the user to do it correctly
+		
+		Unit Testing
+			REST API, the service class methods (ex: create, read, update, delete)
+			should be tested using junit.	Create a test class for every service class.
+			
+			MVC project, test the service classes, this time, Feign api methods are Mocked.
+
+		In every team, do a cross evaluation. 
+		Our mistakes will not be visible to our eyes. 
+		Ask another team member to test your REST api (simple testing in postman)
+		Ask another team member to test your UI		(very important)
+			we don't want to see errors during presentation.
+
+		After intergration, test the application		
+
+2) AWS, cloud learning,
+	I give you the notes for ECS		
+		you can try that in your free time. MFPE is of high priority.
+
+===================================
+AWS ECS steps:
+---------------
+
+1) create a spring boot application
+2) create a docker image
+	mvn spring-boot:build-image
+3) push the image to the docker hub
+	i) create repo in hub.docker.com
+	ii) tag the local image to repo
+	iii) docker push repo
+4) go to aws ECS
+	create task definition
+		choose between "Fargate" or "EC2"
+		choose "Fargate"
+		enter task definition name
+		enter task role as "None"
+		enter task memory 1 Gb
+		enter cpu memory 0.5v CPU
+		create container
+			enter name
+			image:
+				docker.io/jagindia/reponame:tagname
+			memory limit: hard limit	1024
+			port mapping: 8080 and 80
+		click "Add"
+		click "create"
+
+	create cluster
+		type: Networking only
+		cluster name: jag1
+		click create
+	view cluster
+		task
+			"Run new task"
+				Launch type: fargate
+			choose task definition (already created)			
+			choose cluster vpc
+			choose subnet
+			security group:	
+				"Edit"
+				enter the security group name (any name)
+				In bound rules
+					choose all traffic and all tcp
+		click Run task button
+		in the cluster, check logs (refresh)
+		view logs in cloud watch
+
+	In status:	
+		Last status: RUNNING
+	Below that
+		Network:
+			public IP		(copy the ip address)
+	go to browser:
+		http://ipaddress:portnumber
+
+-------------------------
